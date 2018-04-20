@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from eleicoes2018.models import Usuario
+from eleicoes2018.models import Usuario, Estado
 
 def index(request):
 	usuarios = Usuario.objects.all()
-	return render(request, 'index.html', { 'usuarios' : usuarios })
+	estados = Estado.objects.all()
+	return render(request, 'index.html', { 'usuarios' : usuarios , 'estados' : estados })
 
 
 def usuario(request, usuario_id):

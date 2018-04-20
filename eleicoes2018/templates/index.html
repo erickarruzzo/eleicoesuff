@@ -26,7 +26,7 @@
               <a class="nav-link js-scroll-trigger" href="#funcionalidades">Funcionalidades</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#cargos">Cargos</a>
+              <a class="nav-link js-scroll-trigger" href="#usuarios">Usuários</a>
             </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#regiao">Região</a>
@@ -55,19 +55,24 @@
               <li>Informações sobre Candidatos</li>
               <li>Locais de Votação</li>
               <li>Acompanhamento dos Resultados das Eleições</li>
-              <li>Inovações (duas)</li>
+              <li>Manter usuário</li>
+              <li>Informações sobre cargos</li>
             </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="cargos" class="bg-light">
+    <section id="usuarios" class="bg-light">
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto">
-            <h2>Cargos concorridos</h2>
-            <p class="lead">Descrição dos cargos?</p>
+            <h2>Usuários criados</h2>
+            <ul>
+                {% for usuario in usuarios %}
+                    <li><a href="/usuario/{{usuario.id}}">{{ usuario.nome }} / {{ usuario.email }}</a></li>
+                {% endfor %}
+            </ul>
           </div>
         </div>
       </div>
@@ -77,8 +82,12 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto">
-            <h2>Região</h2>
-            <p class="lead">Quais regiões que o usuário irá votar</p>
+            <h2>Estados presentes</h2>
+            <ul>
+                {% for estado in estados %}
+                    <li>{{ estado.nome }} - {{ estado.sigla }}</li>
+                {% endfor %}
+            </ul>
           </div>
         </div>
       </div>
