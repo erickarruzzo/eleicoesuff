@@ -59,9 +59,9 @@ class Migration(migrations.Migration):
             name='Voto',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('candidato_id', models.ForeignKey(to='eleicoes2018.Candidato')),
-                ('cargo_id', models.ForeignKey(to='eleicoes2018.Cargo')),
-                ('usuario_id', models.ForeignKey(to='eleicoes2018.Usuario')),
+                ('candidato_id', models.ForeignKey(to='eleicoes2018.Candidato', on_delete=models.PROTECT)),
+                ('cargo_id', models.ForeignKey(to='eleicoes2018.Cargo', on_delete=models.PROTECT)),
+                ('usuario_id', models.ForeignKey(to='eleicoes2018.Usuario',on_delete=models.PROTECT)),
             ],
             options={
             },
@@ -70,19 +70,19 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='candidato',
             name='cargo_id',
-            field=models.ForeignKey(to='eleicoes2018.Cargo'),
+            field=models.ForeignKey(to='eleicoes2018.Cargo', on_delete=models.PROTECT),
             preserve_default=True,
         ),
         migrations.AddField(
             model_name='candidato',
             name='estado_id',
-            field=models.ForeignKey(to='eleicoes2018.Estado'),
+            field=models.ForeignKey(to='eleicoes2018.Estado',on_delete=models.PROTECT),
             preserve_default=True,
         ),
         migrations.AddField(
             model_name='candidato',
             name='partido_id',
-            field=models.ForeignKey(to='eleicoes2018.Partido'),
+            field=models.ForeignKey(to='eleicoes2018.Partido', on_delete=models.PROTECT),
             preserve_default=True,
         ),
         migrations.AddField(
@@ -94,7 +94,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='usuario',
             name='estado_id',
-            field=models.ForeignKey(default=1, to='eleicoes2018.Estado'),
+            field=models.ForeignKey(default=1, to='eleicoes2018.Estado', on_delete=models.PROTECT),
             preserve_default=False,
         ),
     ]
