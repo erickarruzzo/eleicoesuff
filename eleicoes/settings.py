@@ -36,7 +36,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'eleicoes2018'
+    'eleicoes2018',
+    'usuarios'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -99,5 +100,3 @@ TEMPLATES = [
         },
     },
 ]
-
-

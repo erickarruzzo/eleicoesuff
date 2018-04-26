@@ -1,4 +1,4 @@
-function alternaTab(objeto) {
+/*function alternaTab(objeto) {
 	if (objeto.attr('id') === "login-tab"){
 		$("#login_form").show()
 		$("#register_form").hide()

@@ -1,0 +1,32 @@
+{% extends "base_registrar.html" %}
+
+{% block body %}
+  <form action="{% url 'registrar' %}" method="post">
+    {% csrf_token %}
+    <div class="form-group">
+      <input type="text" class="form-control" name="cpf_register" id="cpf_register" placeholder="CPF" required>
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" name="nome_register" id="nome_register" placeholder="Nome" required>
+    </div>
+    <div class="form-group">
+      <input type="email" class="form-control" name="email_register" id="email_register" placeholder="E-mail" required>
+    </div>
+    <div class="form-group">
+      <select class="custom-select" name="estado_register" id="estado_register" required>
+        <option value="" hidden>Estado</option>
+        <option value="1">RJ</option>
+        <option value="2">SP</option>
+        <option value="3">MG</option>
+      </select>
+      <div class="invalid-feedback">Example invalid custom select feedback</div>
+    </div>
+    <div class="form-group">
+      <input type="password" class="form-control" name="senha_register1" id="senha_register1" placeholder="Senha" required>
+    </div>
+    <!--div class="form-group">
+      <input type="password" class="form-control" id="senha_register2" placeholder="Senha novamente" required>
+    </div-->
+    <button type="submit" value="Registrar" class="btn btn-success col-sm-12">Registrar</button>
+  </form>
+{% endblock %}
