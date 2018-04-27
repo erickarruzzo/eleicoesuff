@@ -13,11 +13,9 @@ class RegistrarUsuarioView(View):
         return render(request, self.template_name)
 
     def post(self, request, *args, **kwargs):
-        code.interact(local=dict(globals(), **locals()))
 
         #preenche o form
         form = RegistrarUsuarioForm(request.POST)
-
         #verifica se eh valido
         if form.is_valid():
             dados_form = form.data
