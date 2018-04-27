@@ -17,7 +17,7 @@ class Cargo(models.Model):
 
 class Partido(models.Model):
 	nome = models.CharField(max_length=255, null=False)
-	sigla = models.CharField(max_length=2, null=False)
+	sigla = models.CharField(max_length=6, null=False)
 
 
 class Candidato(models.Model):

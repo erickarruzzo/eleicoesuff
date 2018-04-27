@@ -31,9 +31,6 @@
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#regiao">Região</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="/registrar">Registrar</a>
-            </li>
           </ul>
         </div>
       </div>
@@ -75,6 +72,8 @@
                 {% for usuario in usuarios %}
                     <li><a href="/usuario/{{usuario.id}}">{{ usuario.nome }} / {{ usuario.email }}</a></li>
                 {% endfor %}
+                <br>
+                <a class="btn btn-primary" href="/registrar">Cadastrar usuário</a>
             </ul>
           </div>
         </div>

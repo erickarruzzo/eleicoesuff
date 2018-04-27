@@ -33,3 +33,10 @@ class RegistrarUsuarioView(View):
             return HttpResponseRedirect('/')
 
         return render(request, self.template_name, {'form': form})
+
+def usuario(request, usuario_id):
+	usuario = Usuario.objects.get(id=usuario_id)
+	return render(request, 'usuario.html', { "usuario" : usuario })
+
+def login(request):
+	return render(request, 'login.html')
