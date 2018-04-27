@@ -1,7 +1,7 @@
 {% extends "base_registrar.html" %}
 
 {% block body %}
-  <form action="{% url 'registrar' %}" method="post">
+  <form action="{% url 'registrar_usuario' %}" method="post">
     {% csrf_token %}
     <div class="form-group">
       <input type="text" class="form-control" name="cpf_register" id="cpf_register" placeholder="CPF" required>
@@ -15,9 +15,9 @@
     <div class="form-group">
       <select class="custom-select" name="estado_register" id="estado_register" required>
         <option value="" hidden>Estado</option>
-        <option value="1">RJ</option>
-        <option value="2">SP</option>
-        <option value="3">MG</option>
+        {% for estado in estados %}
+            <option value="{{ estado.id }}">{{ estado.sigla }}</option>
+        {% endfor %}
       </select>
       <div class="invalid-feedback">Example invalid custom select feedback</div>
     </div>
@@ -28,5 +28,13 @@
       <input type="password" class="form-control" id="senha_register2" placeholder="Senha novamente" required>
     </div-->
     <button type="submit" value="Registrar" class="btn btn-success col-sm-12">Registrar</button>
+    <br>
+    <br>
+    {% if form.errors %}
+      <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <p>{{form.non_field_errors}}</p>
+      </div>
+    {% endif %}
   </form>
 {% endblock %}

@@ -18,7 +18,7 @@ class RegistrarUsuarioForm(forms.Form):
             usuario_existe = Usuario.objects.filter(cpf=self.data['cpf_register']).exists()
 
             if usuario_existe:
-                self.adiciona_erro('Usuario ja existente')
+                self.adiciona_erro('CPF já cadastrado, favor inserir outro.')
                 valid = False
 
             return valid

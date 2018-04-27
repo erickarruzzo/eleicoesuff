@@ -10,7 +10,8 @@ class RegistrarUsuarioView(View):
     template_name = 'registrar.html'
 
     def get(self, request, *args, **kwargs):
-        return render(request, self.template_name)
+        estados = Estado.objects.all()
+        return render(request, self.template_name, { 'estados' : estados })
 
     def post(self, request, *args, **kwargs):
 

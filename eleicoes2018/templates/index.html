@@ -31,6 +31,12 @@
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#regiao">Região</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#partidos">Partidos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="/login">Login</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -72,9 +78,9 @@
                 {% for usuario in usuarios %}
                     <li><a href="/usuario/{{usuario.id}}">{{ usuario.nome }} / {{ usuario.email }}</a></li>
                 {% endfor %}
-                <br>
-                <a class="btn btn-primary" href="/registrar">Cadastrar usuário</a>
             </ul>
+            <br>
+            <a class="btn btn-primary" href="/usuario-registrar">Cadastrar usuário</a>
           </div>
         </div>
       </div>
@@ -90,6 +96,23 @@
                     <li>{{ estado.nome }} - {{ estado.sigla }}</li>
                 {% endfor %}
             </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="partidos" class="bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <h2>Partidos Cadastrados</h2>
+            <ul>
+                {% for partido in partidos %}
+                    <li>{{ partido.nome }} - {{ partido.sigla }}</li>
+                {% endfor %}
+            </ul>
+            <br>
+            <a class="btn btn-primary" href="/partido-registrar">Cadastrar partido</a>
           </div>
         </div>
       </div>

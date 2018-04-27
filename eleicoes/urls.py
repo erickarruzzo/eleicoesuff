@@ -6,4 +6,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('eleicoes2018.urls')),
     url(r'^', include('usuarios.urls')),
+    url(r'^', include('partidos.urls')),
 ]
