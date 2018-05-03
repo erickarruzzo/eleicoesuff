@@ -21,6 +21,11 @@ class RegistrarUsuarioForm(forms.Form):
                 self.adiciona_erro('CPF já cadastrado, favor inserir outro.')
                 valid = False
 
+            if(len(self.data['cpf_register']) != 11):
+                self.adiciona_erro('CPF precisa ter 11 numeros')
+                valid = False
+
+
             return valid
 
     def adiciona_erro(self, message):

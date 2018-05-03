@@ -4,25 +4,30 @@
   <form action="{% url 'registrar_usuario' %}" method="post">
     {% csrf_token %}
     <div class="form-group">
-      <input type="text" class="form-control" name="cpf_register" id="cpf_register" placeholder="CPF" required>
+      <input type="text" class="form-control" name="cpf_register" id="cpf_register" placeholder="CPF" required value="{{form.cpf_register.value}}" >
     </div>
     <div class="form-group">
-      <input type="text" class="form-control" name="nome_register" id="nome_register" placeholder="Nome" required>
+      <input type="text" class="form-control" name="nome_register" id="nome_register" placeholder="Nome" required value="{{form.nome_register.value}}">
     </div>
     <div class="form-group">
-      <input type="email" class="form-control" name="email_register" id="email_register" placeholder="E-mail" required>
+      <input type="email" class="form-control" name="email_register" id="email_register" placeholder="E-mail" required value="{{form.email_register.value}}">
     </div>
     <div class="form-group">
       <select class="custom-select" name="estado_register" id="estado_register" required>
         <option value="" hidden>Estado</option>
         {% for estado in estados %}
-            <option value="{{ estado.id }}">{{ estado.sigla }}</option>
+            {% if form.estado_register.value == estado.id|stringformat:"i"  %}
+
+              <option value="{{ estado.id }}" selected>{{ estado.sigla }} </option>
+            {%else%}}
+               <option value="{{ estado.id }}">{{ estado.sigla }}</option>
+            {%endif%}}
         {% endfor %}
       </select>
       <div class="invalid-feedback">Example invalid custom select feedback</div>
     </div>
     <div class="form-group">
-      <input type="password" class="form-control" name="senha_register1" id="senha_register1" placeholder="Senha" required>
+      <input type="password" class="form-control" name="senha_register1" id="senha_register1" placeholder="Senha" required value="{{form.senha_register1.value}}">
     </div>
     <!--div class="form-group">
       <input type="password" class="form-control" id="senha_register2" placeholder="Senha novamente" required>
