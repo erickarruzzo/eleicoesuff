@@ -15,7 +15,7 @@ class RegistrarUsuarioView(View):
         return render(request, self.template_name, { 'estados' : estados })
 
     def post(self, request, *args, **kwargs):
-
+        estados = Estado.objects.all()
         #preenche o form
         form = RegistrarUsuarioForm(request.POST)
         #verifica se eh valido
@@ -37,7 +37,7 @@ class RegistrarUsuarioView(View):
 
             return HttpResponseRedirect('/')
 
-        return render(request, self.template_name, {'form': form})
+        return render(request, self.template_name, {'form': form, 'estados':estados})
 
 def usuario(request, usuario_id):
 	usuario = Usuario.objects.get(id=usuario_id)
