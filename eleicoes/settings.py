@@ -38,7 +38,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'eleicoes2018',
     'usuarios',
-    'partidos'
+    'partidos',
+    'estados'
 )
 
 MIDDLEWARE_CLASSES = (

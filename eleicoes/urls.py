@@ -7,4 +7,5 @@ urlpatterns = [
     url(r'^', include('eleicoes2018.urls')),
     url(r'^', include('usuarios.urls')),
     url(r'^', include('partidos.urls')),
+    url(r'^', include('estados.urls')),
 ]

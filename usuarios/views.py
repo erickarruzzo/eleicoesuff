@@ -6,6 +6,7 @@ from usuarios.forms import RegistrarUsuarioForm
 from django.views.generic.base import View
 from django.contrib.auth.hashers import PBKDF2PasswordHasher
 
+
 class RegistrarUsuarioView(View):
 
     template_name = 'registrar.html'
