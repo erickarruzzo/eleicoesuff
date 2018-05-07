@@ -1,0 +1,55 @@
+{% extends "base_registrar_candidato.html" %}
+
+{% block body %}
+  <form action="{% url 'registrar_candidato' %}" method="post">
+    {% csrf_token %}
+    <div class="form-group">
+      <input type="text" class="form-control" name="nome_register" id="nome_register" placeholder="Nome" required>
+    </div>
+    <div class="form-group">
+      <select class="custom-select" name="partido_register" id="partido_register" required>
+        <option value="" hidden>Partido</option>
+        {% for partido in partidos %}
+            {% if form.partido_register.value == partido.id|stringformat:"i"  %}
+              <option value="{{ partido.id }}" selected>{{ partido.sigla }} </option>
+            {%else%}}
+               <option value="{{ partido.id }}">{{ partido.sigla }}</option>
+            {%endif%}}
+        {% endfor %}
+      </select>
+    </div>
+    <div class="form-group">
+      <select class="custom-select" name="estado_register" id="estado_register" required>
+        <option value="" hidden>Estado</option>
+        {% for estado in estados %}
+            {% if form.estado_register.value == estado.id|stringformat:"i"  %}
+              <option value="{{ estado.id }}" selected>{{ estado.sigla }} </option>
+            {%else%}}
+               <option value="{{ estado.id }}">{{ estado.sigla }}</option>
+            {%endif%}}
+        {% endfor %}
+      </select>
+    </div>
+    <div class="form-group">
+      <select class="custom-select" name="cargo_register" id="cargo_register" required>
+        <option value="" hidden>Cargo</option>
+        {% for cargo in cargos %}
+            {% if form.cargo_register.value == cargo.id|stringformat:"i"  %}
+              <option value="{{ cargo.id }}" selected>{{ cargo.nome }} </option>
+            {%else%}}
+               <option value="{{ cargo.id }}">{{ cargo.nome }}</option>
+            {%endif%}}
+        {% endfor %}
+      </select>
+    </div>
+    <button type="submit" value="Registrar" class="btn btn-success col-sm-12">Cadastrar</button>
+    <br>
+    <br>
+    {% if form.errors %}
+      <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <p>{{form.non_field_errors}}</p>
+      </div>
+    {% endif %}
+  </form>
+{% endblock %}

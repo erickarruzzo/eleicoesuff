@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'^', include('partidos.urls')),
     url(r'^', include('estados.urls')),
     url(r'^', include('cargos.urls')),
+    url(r'^', include('candidatos.urls')),
 ]

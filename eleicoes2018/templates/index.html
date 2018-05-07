@@ -35,6 +35,12 @@
               <a class="nav-link js-scroll-trigger" href="#partidos">Partidos</a>
             </li>
             <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#cargos">Cargos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#candidatos">Candidatos</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="/login">Login</a>
             </li>
           </ul>
@@ -132,6 +138,33 @@
             </ul>
             <br>
             <a class="btn btn-primary" href="{% url 'registrar_cargo' %}">Cadastrar cargo</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="candidatos" class="bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <h2>Candidatos Cadastrados</h2>
+            <ul>
+              {% for cargo in cargos %}
+                  <li>{{ cargo.nome }}
+                    <ul>
+                      {% for candidato in candidatos %}
+                          {% if candidato.cargo_id.id == cargo.id %}
+                              <li>{{ candidato.nome }} ({{ candidato.partido_id.sigla }} - {{ candidato.estado_id.sigla }})</li>
+                          {% endif %}
+                      {% endfor %}
+                    </ul>
+                  </li>
+                  <br>
+              {% endfor %}
+            </ul>
+
+            <br>
+            <a class="btn btn-primary" href="{% url 'registrar_candidato' %}">Cadastrar candidato</a>
           </div>
         </div>
       </div>

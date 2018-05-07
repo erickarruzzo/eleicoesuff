@@ -7,4 +7,5 @@ def index(request):
 	estados = Estado.objects.all()
 	partidos = Partido.objects.all()
 	cargos = Cargo.objects.all()
-	return render(request, 'index.html', { 'usuarios' : usuarios , 'estados' : estados , 'partidos' : partidos, 'cargos' : cargos })
+	candidatos = Candidato.objects.all()
+	return render(request, 'index.html', { 'usuarios' : usuarios , 'estados' : estados , 'partidos' : partidos , 'cargos' : cargos , 'candidatos' : candidatos })
