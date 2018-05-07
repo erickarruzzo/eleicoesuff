@@ -8,4 +8,5 @@ urlpatterns = [
     url(r'^', include('usuarios.urls')),
     url(r'^', include('partidos.urls')),
     url(r'^', include('estados.urls')),
+    url(r'^', include('cargos.urls')),
 ]

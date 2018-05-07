@@ -39,7 +39,8 @@ INSTALLED_APPS = (
     'eleicoes2018',
     'usuarios',
     'partidos',
-    'estados'
+    'estados',
+    'cargos'
 )
 
 MIDDLEWARE_CLASSES = (

@@ -80,7 +80,7 @@
                 {% endfor %}
             </ul>
             <br>
-            <a class="btn btn-primary" href="/usuario-registrar">Cadastrar usuário</a>
+            <a class="btn btn-primary" href="{% url 'registrar_usuario' %}">Cadastrar usuário</a>
           </div>
         </div>
       </div>
@@ -114,7 +114,24 @@
                 {% endfor %}
             </ul>
             <br>
-            <a class="btn btn-primary" href="/partido-registrar">Cadastrar partido</a>
+            <a class="btn btn-primary" href="{% url 'registrar_partido' %}">Cadastrar partido</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="cargos">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <h2>Cargos Cadastrados</h2>
+            <ul>
+                {% for cargo in cargos %}
+                    <li>{{ cargo.nome }}</li>
+                {% endfor %}
+            </ul>
+            <br>
+            <a class="btn btn-primary" href="{% url 'registrar_cargo' %}">Cadastrar cargo</a>
           </div>
         </div>
       </div>
