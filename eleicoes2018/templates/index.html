@@ -23,9 +23,6 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#funcionalidades">Funcionalidades</a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#usuarios">Usuários</a>
             </li>
             <li class="nav-item">
@@ -33,9 +30,6 @@
             </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#partidos">Partidos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#cargos">Cargos</a>
             </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#candidatos">Candidatos</a>
@@ -55,27 +49,7 @@
       </div>
     </header>
 
-    <section id="funcionalidades">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 mx-auto">
-            <h2>Funcionalidades do portal Eleições 2018</h2>
-            <p class="lead">Funcionalidades:</p>
-            <ul>
-              <li>Home Page</li>
-              <li>Boca de Urna</li>
-              <li>Informações sobre Candidatos</li>
-              <li>Locais de Votação</li>
-              <li>Acompanhamento dos Resultados das Eleições</li>
-              <li>Manter usuário</li>
-              <li>Informações sobre cargos</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="usuarios" class="bg-light">
+    <section id="usuarios">
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto">
@@ -92,7 +66,7 @@
       </div>
     </section>
 
-    <section id="regiao">
+    <section id="regiao" class="bg-light">
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto">
@@ -109,7 +83,7 @@
       </div>
     </section>
 
-    <section id="partidos" class="bg-light">
+    <section id="partidos">
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto">
@@ -121,23 +95,6 @@
             </ul>
             <br>
             <a class="btn btn-primary" href="{% url 'registrar_partido' %}">Cadastrar partido</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="cargos">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 mx-auto">
-            <h2>Cargos Cadastrados</h2>
-            <ul>
-                {% for cargo in cargos %}
-                    <li>{{ cargo.nome }}</li>
-                {% endfor %}
-            </ul>
-            <br>
-            <a class="btn btn-primary" href="{% url 'registrar_cargo' %}">Cadastrar cargo</a>
           </div>
         </div>
       </div>

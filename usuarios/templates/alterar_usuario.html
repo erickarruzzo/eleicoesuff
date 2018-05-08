@@ -1,0 +1,36 @@
+{% extends "template_usuario.html" %}
+
+{% block body %}
+<form action="{% url 'alterar_usuario' usuario.id %}" method="post">
+{% csrf_token %}
+  <div class="form-group">
+		<label for="id_perfil">ID</label>
+		<input type="text" class="form-control" id="id_perfil" name="id_perfil" value="{{usuario.id}}" readonly>
+	</div>
+	<div class="form-group">
+		<label for="nome_perfil">Nome</label>
+		<input type="text" class="form-control" id="nome_perfil" name="nome_perfil" value="{{usuario.nome}}" required>
+	</div>
+	<div class="form-group">
+		<label for="cpf_perfil">CPF</label>
+		<input type="text" class="form-control" id="cpf_perfil" name="cpf_perfil" value="{{usuario.cpf}}" required>
+	</div>
+	<div class="form-group">
+    <label for="estado_perfil">Estado</label>
+    <select class="custom-select" name="estado_perfil" id="estado_perfil" name="estado_perfil" value="{{usuario.estado_id.id}}" required>
+      {% for estado in estados %}
+          {% if usuario.estado_id.id == estado.id  %}
+            <option value="{{ estado.id }}" selected>{{ estado.sigla }} </option>
+          {%else%}}
+            <option value="{{ estado.id }}">{{ estado.sigla }}</option>
+          {%endif%}}
+      {% endfor %}
+    </select>
+	</div>
+	<div class="form-group">
+		<label for="email_perfil">E-mail</label>
+		<input type="email" class="form-control" id="email_perfil" name="email_perfil" value="{{usuario.email}}" required>
+	</div>
+  <button id="btnEditaUsuario" type="submit" class="btn btn-success">Confirmar</button>
+</form>
+{% endblock %}

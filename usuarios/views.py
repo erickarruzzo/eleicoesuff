@@ -2,7 +2,7 @@ import code
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from eleicoes2018.models import Usuario, Estado
-from usuarios.forms import RegistrarUsuarioForm
+from usuarios.forms import RegistrarUsuarioForm, AlterarUsuarioForm
 from django.views.generic.base import View
 from django.contrib.auth.hashers import PBKDF2PasswordHasher
 
@@ -39,6 +39,44 @@ class RegistrarUsuarioView(View):
             return HttpResponseRedirect('/')
 
         return render(request, self.template_name, {'form': form, 'estados':estados})
+
+class AlterarUsuarioView(View):
+
+    template_name = 'alterar_usuario.html'
+
+    def get(self, request, usuario_id, *args, **kwargs):
+        usuario = Usuario.objects.get(id=usuario_id)
+        estados = Estado.objects.all()
+        return render(request, self.template_name, { 'usuario' : usuario , 'estados' : estados })
+
+    def post(self, request, usuario_id, *args, **kwargs):
+        #preenche o form
+        form = AlterarUsuarioForm(request.POST)
+
+        #code.interact(local=dict(globals(), **locals()))
+
+        #pega o usuario
+        usuario = Usuario.objects.get(id=usuario_id)
+
+
+        #verifica se eh valido
+        if form.is_valid():
+            dados_form = form.data
+
+            estado = Estado.objects.get(id=dados_form['estado_perfil'])
+
+            #edita os campos
+            usuario.cpf = dados_form['cpf_perfil']
+            usuario.nome = dados_form['nome_perfil']
+            usuario.email = dados_form['email_perfil']
+            usuario.estado_id = estado
+
+            #grava no banco
+            usuario.save()
+
+            return HttpResponseRedirect('/')
+
+        return render(request, self.template_name, { 'usuario' : usuario , 'estados' : estados })
 
 def usuario(request, usuario_id):
 	usuario = Usuario.objects.get(id=usuario_id)
