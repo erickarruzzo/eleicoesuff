@@ -20,8 +20,8 @@ class RegistrarEstadoView(View):
             dados_form = form.data
 
             #cria o estado
-            estado = Estado(nome=dados_form['nome_register'],
-                                sigla=dados_form['sigla_register'])
+            estado = Estado(nome=dados_form['nome_register'], sigla=dados_form['sigla_register'])
+            
             #grava no banco
             estado.save()
 

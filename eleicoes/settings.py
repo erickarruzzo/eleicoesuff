@@ -41,7 +41,8 @@ INSTALLED_APPS = (
     'partidos',
     'estados',
     'cargos',
-    'candidatos'
+    'candidatos',
+    'votos'
 )
 
 MIDDLEWARE_CLASSES = (

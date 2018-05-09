@@ -1,0 +1,55 @@
+{% extends "base_registrar_voto.html" %}
+
+{% block body %}
+  <form>
+    {% csrf_token %}
+    <ul id="lista_candidatos" style="list-style-type: none; margin:0;">
+      {% for cargo in cargos %}<br>
+          {% if cargo.id == 1 %}
+          <li style="list-style-type: none; text-align: center" id="{{cargo.id}}-list"><h2>{{ cargo.nome }}</h2>
+            <ul style="list-style-type: none;">
+              {% for candidato in candidatos %}
+                  {% if candidato.cargo_id.id == cargo.id %}
+                      <li class="col-sm-5" style="display : inline-block">
+                        <div class="card">
+                          <div class="card-header">
+                            {{ candidato.nome }}
+                          </div>
+                          <div class="card-body">
+                            <h5 class="card-title">{{ candidato.partido_id.sigla }}</h5>
+                            <p class="card-text">{{ candidato.estado_id.nome }}</p>
+                            <a style="color: white" onclick="votarCandidato({{candidato.id}}, {{usuario_ativo.id}}); $('#{{cargo.id}}-list').hide()" class="btn btn-primary">Selecionar</a>
+                          </div>
+                        </div>
+                    </li>
+                  {% endif %}
+              {% endfor %}
+            </ul>
+          </li>
+          {% else %}
+          <li style="list-style-type: none; text-align: center" id="{{cargo.id}}-list"><h2>{{ cargo.nome }}</h2>
+            <ul style="list-style-type: none;">
+              {% for candidato in candidatos %}
+                  {% if candidato.cargo_id.id == cargo.id and candidato.estado_id == usuario_ativo.estado_id %}
+                      <li class="col-sm-5" style="display : inline-block">
+                        <div class="card">
+                          <div class="card-header">
+                            {{ candidato.nome }}
+                          </div>
+                          <div class="card-body">
+                            <h5 class="card-title">{{ candidato.partido_id.sigla }}</h5>
+                            <p class="card-text">{{ candidato.estado_id.nome }}</p>
+                            <a style="color: white" onclick="votarCandidato({{candidato.id}}, {{usuario_ativo.id}}); $('#{{cargo.id}}-list').hide()" class="btn btn-primary">Selecionar</a>
+                          </div>
+                        </div>
+                    </li>
+                  {% endif %}
+              {% endfor %}
+            </ul>
+          </li>
+          <br>
+          {% endif %}
+      {% endfor %}
+    </ul>
+  </form>
+{% endblock %}

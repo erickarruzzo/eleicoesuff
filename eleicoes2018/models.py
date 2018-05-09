@@ -28,5 +28,8 @@ class Candidato(models.Model):
 
 class Voto(models.Model):
 	usuario_id = models.ForeignKey(Usuario, on_delete=models.CASCADE)
-	cargo_id = models.ForeignKey(Cargo, on_delete=models.CASCADE)
+	candidato_id = models.ForeignKey(Candidato, on_delete=models.CASCADE)
+
+class Info(models.Model):
+	texto = models.CharField(max_length=255, null=False)
 	candidato_id = models.ForeignKey(Candidato, on_delete=models.CASCADE)

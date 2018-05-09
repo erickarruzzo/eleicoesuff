@@ -1,0 +1,15 @@
+{% extends "base_registrar_voto.html" %}
+
+{% block body %}
+  <form>
+    {% csrf_token %}
+    <div class="form-group">
+      <select class="custom-select" name="usuario_register" onchange="carregaCandidatos()" id="usuario_register" required>
+        <option value="" hidden>Usuário</option>
+        {% for usuario in usuarios %}
+        <option value="{{ usuario.id }}">{{ usuario.nome }}</option>
+        {% endfor %}
+      </select>
+    </div>
+  </form>
+{% endblock %}
