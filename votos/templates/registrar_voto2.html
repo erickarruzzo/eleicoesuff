@@ -3,14 +3,14 @@
 {% block body %}
   <form>
     {% csrf_token %}
-    <ul id="lista_candidatos" style="list-style-type: none; margin:0;">
+    <div id="lista_candidatos" style="list-style-type: none; margin:0;">
       {% for cargo in cargos %}<br>
           {% if cargo.id == 1 %}
-          <li style="list-style-type: none; text-align: center" id="{{cargo.id}}-list"><h2>{{ cargo.nome }}</h2>
-            <ul style="list-style-type: none;">
+          <div style="list-style-type: none; text-align: center" id="{{cargo.id}}-list"><h2>{{ cargo.nome }}</h2>
+            <div style="list-style-type: none;">
               {% for candidato in candidatos %}
                   {% if candidato.cargo_id.id == cargo.id %}
-                      <li class="col-sm-5" style="display : inline-block">
+                      <div class="col-sm-5" style="display : inline-block">
                         <div class="card">
                           <div class="card-header">
                             {{ candidato.nome }}
@@ -21,17 +21,17 @@
                             <a style="color: white" onclick="votarCandidato({{candidato.id}}, {{usuario_ativo.id}}); $('#{{cargo.id}}-list').hide()" class="btn btn-primary">Selecionar</a>
                           </div>
                         </div>
-                    </li>
+                    </div>
                   {% endif %}
               {% endfor %}
-            </ul>
-          </li>
+            </div>
+          </div>
           {% else %}
-          <li style="list-style-type: none; text-align: center" id="{{cargo.id}}-list"><h2>{{ cargo.nome }}</h2>
-            <ul style="list-style-type: none;">
+          <div style="list-style-type: none; text-align: center" id="{{cargo.id}}-list"><h2>{{ cargo.nome }}</h2>
+            <div style="list-style-type: none;">
               {% for candidato in candidatos %}
                   {% if candidato.cargo_id.id == cargo.id and candidato.estado_id == usuario_ativo.estado_id %}
-                      <li class="col-sm-5" style="display : inline-block">
+                      <div class="col-sm-5" style="display : inline-block">
                         <div class="card">
                           <div class="card-header">
                             {{ candidato.nome }}
@@ -42,14 +42,14 @@
                             <a style="color: white" onclick="votarCandidato({{candidato.id}}, {{usuario_ativo.id}}); $('#{{cargo.id}}-list').hide()" class="btn btn-primary">Selecionar</a>
                           </div>
                         </div>
-                    </li>
+                    </div>
                   {% endif %}
               {% endfor %}
-            </ul>
-          </li>
+            </div>
+          </div>
           <br>
           {% endif %}
       {% endfor %}
-    </ul>
+    </div>
   </form>
 {% endblock %}
