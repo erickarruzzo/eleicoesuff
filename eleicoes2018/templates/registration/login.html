@@ -1,6 +1,54 @@
-<h2>Login</h2>
+<!--h2>Login</h2>
 <form method="post">
   {% csrf_token %}
   {{ form.as_p }}
   <button type="submit">Login</button>
-</form>
+</form-->
+{% load staticfiles %}
+<!DOCTYPE html>
+  <head>
+
+    <meta charset="utf-8">
+
+    <title>Eleições 2018 - Login</title>
+
+    <link href='{% static "vendor/bootstrap/css/bootstrap.min.css" %}' rel="stylesheet">
+    <link href='{% static "css/login.css" %}' rel="stylesheet">
+
+  </head>
+
+  <body>
+    <div class="centraliza col-xs-6">
+      <div class="card">
+        <div class="card-header">
+          <ul class="nav nav-tabs card-header-tabs">
+            <li class="nav-item">
+              <a class="nav-link active" onclick="alternaTab($(this))" id="login-tab" href="#">Login</a>
+            </li>
+          </ul>
+        </div>
+        <div class="card-body">
+          <div class="col-xs-12" id="login_form">
+            <form method="post">
+              {% csrf_token %}
+              <div class="form-group">
+                <input type="email" class="form-control" type="text" name="username" id="id_username" maxlength="254" placeholder="E-mail" autofocus required>
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control" name="password" id="id_password" placeholder="Senha" required>
+              </div>
+              <button type="submit" class="btn btn-primary col-sm-12">Entrar</button>
+            </form>
+          </div>
+        </div>
+        <div class="card-footer text-center">
+          <a href="/" class="navbar-brand js-scroll-trigger">Eleições 2018</a>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script src='{% static "vendor/jquery/jquery.min.js" %}'></script>
+  <script src='{% static "vendor/bootstrap/js/bootstrap.min.js" %}'></script>
+  <script src='{% static "js/login.js" %}'></script>
+</html>

@@ -37,3 +37,7 @@ class RegistrarCandidatoView(View):
             return HttpResponseRedirect('/')
 
         return render(request, self.template_name, {'form': form})
+
+def candidato(request, candidato_id):
+	candidato = Candidato.objects.get(id=candidato_id)
+	return render(request, 'candidato.html', { "candidato" : candidato })

@@ -32,29 +32,3 @@ def contador_votos(request, candidatos, cargo, estado):
     json_string = json.dumps(votos)
 
     return JsonResponse(json_string)
-
-def get_candidatos(request):
-    #pdb.set_trace()
-    candidatos = Candidato.objects.all().values()
-    list_candidato = list(candidatos)
-    return JsonResponse(list_candidato, safe=False)
-
-def get_estados(request):
-    #pdb.set_trace()
-    estados = Estado.objects.all().values()
-    list_estado = list(estados)
-    return JsonResponse(list_estado, safe=False)
-
-
-def get_partidos(request):
-    #pdb.set_trace()
-    partidos = Partido.objects.all().values()
-    list_partido = list(partidos)
-    return JsonResponse(list_partido, safe=False)
-
-
-def get_cargos(request):
-    #pdb.set_trace()
-    cargos = Cargo.objects.all().values()
-    list_cargo = list(cargos)
-    return JsonResponse(list_cargo, safe=False)

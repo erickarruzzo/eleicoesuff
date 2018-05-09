@@ -8,6 +8,7 @@
 
     <link href='{% static "vendor/bootstrap/css/bootstrap.min.css" %}' rel="stylesheet">
     <link href='{% static "css/scrolling-nav.css" %}' rel="stylesheet">
+    <link href='{% static "css/autocomplete.css" %}' rel="stylesheet">
 
   </head>
 
@@ -23,6 +24,9 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#candidatos">Candidatos</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#usuarios">Usuários</a>
             </li>
             <li class="nav-item">
@@ -32,16 +36,13 @@
               <a class="nav-link js-scroll-trigger" href="#partidos">Partidos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#candidatos">Candidatos</a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="/voto">Votar</a>
             </li>
 
             {% if user.is_authenticated %}
 
             <li class="nav-item">
-              <p class="nav-link">  Hi {{ user.username }}! </p>
+              <a href="usuario/{{user.id}}" class="nav-link">  {{ user.username }} </a>
             </li>
 
 
@@ -65,6 +66,28 @@
         <!--p class="lead">Não sei o que colocar aqui</p-->
       </div>
     </header>
+
+    <section id="candidatos" class="bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <h2>Busca por candidatos</h2>
+            <form autocomplete="off" action="/action_page.php">
+              <div class="form-group">
+                <div class="autocomplete">
+                  <div class="input-group">
+                    <input id="myInput" class="form-control" type="text" name="myCountry">
+                    <div class="input-group-append">
+                      <button class="btn btn-primary" onclick="buscaCandidato($('#myInput').val())" type="button">Buscar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <section id="usuarios">
       <div class="container">
@@ -100,49 +123,6 @@
       </div>
     </section>
 
-    <section id="partidos">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 mx-auto">
-            <h2>Partidos Cadastrados</h2>
-            <ul>
-                {% for partido in partidos %}
-                    <li>{{ partido.nome }} - {{ partido.sigla }}</li>
-                {% endfor %}
-            </ul>
-            <br>
-            <a class="btn btn-primary" href="{% url 'registrar_partido' %}">Cadastrar partido</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="candidatos" class="bg-light">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 mx-auto">
-            <h2>Candidatos Cadastrados</h2>
-            <ul>
-              {% for cargo in cargos %}
-                  <li>{{ cargo.nome }}
-                    <ul>
-                      {% for candidato in candidatos %}
-                          {% if candidato.cargo_id.id == cargo.id %}
-                              <li>{{ candidato.nome }} ({{ candidato.partido_id.sigla }} - {{ candidato.estado_id.sigla }})</li>
-                          {% endif %}
-                      {% endfor %}
-                    </ul>
-                  </li>
-                  <br>
-              {% endfor %}
-            </ul>
-            <br>
-            <a class="btn btn-primary" href="{% url 'registrar_candidato' %}">Cadastrar candidato</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <footer class="py-5 bg-dark">
       <div class="container">
         <p class="m-0 text-center text-white">Copyright &copy; Eleições 2018</p>
@@ -153,7 +133,11 @@
     <script src='{% static "vendor/bootstrap/js/bootstrap.bundle.min.js" %}'></script>
     <script src='{% static "vendor/jquery-easing/jquery.easing.min.js" %}'></script>
     <script src='{% static "js/scrolling-nav.js" %}'></script>
+    <script src='{% static "js/general.js" %}'></script>
+    <script>
+      getCandidatos();
+      listaCandidatos();
+    </script>
 
   </body>
-
 </html>

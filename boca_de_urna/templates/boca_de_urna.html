@@ -37,6 +37,9 @@
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#estadual">Deputado Estadual</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="/">Voltar para Home Page</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -55,7 +58,7 @@
           <div class="col-lg-8 mx-auto">
             <h2>Presidente - ({{candidatos_list}} votos) </h2>
             <br>
-            <div id="lista_presidente"><!--
+            <div id="lista_1"><!--
                 {% for presidente in presidentes %}
                     <h3><a href="/candidato/{{presidente.id}}">{{ presidente.nome }} - {{ presidente.partido_id.sigla }}/{{ presidente.estado_id.sigla }}</a></h3>
                 {% endfor %}-->
@@ -71,16 +74,7 @@
           <div class="col-lg-8 mx-auto">
             <h2>Governador</h2>
             <br>
-            <div>
-                {% for estado in estados %}
-                <div><br><h3 id="{{estado.id}}_estado">{{ estado.nome }} - </h3>
-                    {% for governador in governadores %}
-                      {% if governador.estado_id.id == estado.id %}
-                        <h4><a href="/candidato/{{governador.id}}">{{ governador.nome }} - {{ governador.partido_id.sigla }}/{{ governador.estado_id.sigla }}</a></h4>
-                      {% endif %}
-                    {% endfor %}
-                </div>
-                {% endfor %}
+            <div id="lista_2">
             </div>
 
           </div>
@@ -88,44 +82,43 @@
       </div>
     </section>
 
-    <section id="partidos">
+    <section id="senador">
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto">
-            <h2>Partidos Cadastrados</h2>
-            <ul>
-                {% for partido in partidos %}
-                    <li>{{ partido.nome }} - {{ partido.sigla }}</li>
-                {% endfor %}
-            </ul>
+            <h2>Senador</h2>
             <br>
-            <a class="btn btn-primary" href="{% url 'registrar_partido' %}">Cadastrar partido</a>
+            <div id="lista_3">
+            </div>
+
           </div>
         </div>
       </div>
     </section>
 
-    <section id="candidatos" class="bg-light">
+    <section id="federal" class="bg-light">
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto">
-            <h2>Candidatos Cadastrados</h2>
-            <ul>
-              {% for cargo in cargos %}
-                  <li>{{ cargo.nome }}
-                    <ul>
-                      {% for candidato in candidatos %}
-                          {% if candidato.cargo_id.id == cargo.id %}
-                              <li>{{ candidato.nome }} ({{ candidato.partido_id.sigla }} - {{ candidato.estado_id.sigla }})</li>
-                          {% endif %}
-                      {% endfor %}
-                    </ul>
-                  </li>
-                  <br>
-              {% endfor %}
-            </ul>
+            <h2>Deputado Federal</h2>
             <br>
-            <a class="btn btn-primary" href="{% url 'registrar_candidato' %}">Cadastrar candidato</a>
+            <div id="lista_4">
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="estadual">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <h2>Deputado Estadual</h2>
+            <br>
+            <div id="lista_5">
+            </div>
+
           </div>
         </div>
       </div>
@@ -141,6 +134,7 @@
     <script src='{% static "vendor/bootstrap/js/bootstrap.bundle.min.js" %}'></script>
     <script src='{% static "vendor/jquery-easing/jquery.easing.min.js" %}'></script>
     <script src='{% static "js/scrolling-nav.js" %}'></script>
+    <script src='{% static "js/general.js" %}'></script>
     <script src='{% static "js/boca_de_urna.js" %}'></script>
 
   </body>

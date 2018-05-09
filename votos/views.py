@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from eleicoes2018.models import *
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
+import json
 import pdb
 
 @login_required
@@ -14,7 +16,8 @@ def carregaVoto(request):
     return render(request, 'registrar_voto2.html', { 'cargos' : cargos , 'candidatos' : candidatos, 'usuario_ativo' : usuario_ativo })
 
 
-
+@csrf_exempt
+@login_required
 def realiza_voto(request, *a, **kw):
     # Notice I didn't directly try to access request.GET["check_this"]
     #code.interact(local=dict(globals(), **locals()))
@@ -31,3 +34,8 @@ def realiza_voto(request, *a, **kw):
 
     #grava no banco
     voto.save()
+
+    votos = Voto.objects.all().values()
+
+    list_voto = list(votos)
+    return JsonResponse(list_voto, safe=False)

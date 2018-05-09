@@ -1,8 +1,3 @@
-var candidatos_global;
-var partidos_global;
-var estados_global;
-var cargos_global;
-
 function populaPresidente(){
   var candidatos = candidatos_global;
   var partidos = partidos_global;
@@ -11,8 +6,27 @@ function populaPresidente(){
 
   for (i=0;i<candidatos.length;i++){
     if (candidatos[i].cargo_id_id==1){
-      $("#lista_presidente").append('<h3><a href="/candidato/' + candidatos[i].id + '">' + candidatos[i].nome + ' - ' + partidos[candidatos[i].partido_id_id - 1].sigla + '/' + estados[candidatos[i].estado_id_id - 1].sigla + '</a></h3></div>');
+      $("#lista_1").append('<h3><a href="/candidato/' + candidatos[i].id + '">' + candidatos[i].nome + ' - ' + partidos[candidatos[i].partido_id_id - 1].sigla + '/' + estados[candidatos[i].estado_id_id - 1].sigla + '</a></h3></div>');
     }
+  }
+}
+
+function populaCargos(cargo_id){
+  var candidatos = candidatos_global;
+  var partidos = partidos_global;
+  var estados = estados_global;
+  var cargos = cargos_global;
+
+  for (i=0;i<estados.length;i++){
+    $("#lista_" + cargo_id).append('<div><br><h3>' + estados[i].nome + '</h3>');
+    for (j=0;j<candidatos.length;j++){
+      if (candidatos[j].cargo_id_id == cargo_id){
+        if (estados[i].id == candidatos[j].estado_id_id){
+            $("#lista_" + cargo_id).append('<h4><a href="/candidato/' + candidatos[j].id + '">' +  candidatos[j].nome + ' - ' + partidos[candidatos[j].partido_id_id - 1].sigla + '/' + estados[candidatos[j].estado_id_id - 1].sigla + '</a></h4>');
+        }
+      }
+    }
+    $("#lista_" + cargo_id).append('</div>');
   }
 }
 
@@ -22,6 +36,11 @@ $(document).ready(function() {
     getEstados();
     getCargos();
     populaPresidente();
+    populaCargos(2);
+    populaCargos(3);
+    populaCargos(4);
+    populaCargos(5);
+
 });
 
 function contadorVotos(candidatos, cargo, estado){
@@ -39,66 +58,6 @@ function contadorVotos(candidatos, cargo, estado){
       },
       error: function(){
 
-      }
-  });
-}
-
-function getCandidatos() {
-  $.ajax({
-      type: "GET",
-      url: "get_candidatos",
-      dataType: "json",
-      async: false,
-      success: function(candidatos){
-        candidatos_global = candidatos;
-      },
-      error: function(erro){
-        console.log(erro)
-      }
-  });
-}
-
-function getPartidos() {
-  $.ajax({
-      type: "GET",
-      url: "get_partidos",
-      dataType: "json",
-      async: false,
-      success: function(partidos){
-        partidos_global = partidos;
-      },
-      error: function(erro){
-        console.log(erro)
-      }
-  });
-}
-
-function getEstados() {
-  $.ajax({
-      type: "GET",
-      url: "get_estados",
-      dataType: "json",
-      async: false,
-      success: function(estados){
-        estados_global = estados;
-      },
-      error: function(erro){
-        console.log(erro)
-      }
-  });
-}
-
-function getCargos() {
-  $.ajax({
-      type: "GET",
-      url: "get_cargos",
-      dataType: "json",
-      async: false,
-      success: function(cargos){
-        cargos_global = cargos;
-      },
-      error: function(erro){
-        console.log(erro)
       }
   });
 }

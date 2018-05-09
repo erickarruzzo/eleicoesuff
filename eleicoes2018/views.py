@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.http import JsonResponse
+import json
 from eleicoes2018.models import *
 
 def index(request):
@@ -9,3 +11,36 @@ def index(request):
 	cargos = Cargo.objects.all()
 	candidatos = Candidato.objects.all()
 	return render(request, 'index.html', { 'usuarios' : usuarios , 'estados' : estados , 'partidos' : partidos , 'cargos' : cargos , 'candidatos' : candidatos })
+
+def get_candidatos(request):
+    #pdb.set_trace()
+    candidatos = Candidato.objects.all().values()
+    list_candidato = list(candidatos)
+    return JsonResponse(list_candidato, safe=False)
+
+def get_estados(request):
+    #pdb.set_trace()
+    estados = Estado.objects.all().values()
+    list_estado = list(estados)
+    return JsonResponse(list_estado, safe=False)
+
+
+def get_partidos(request):
+    #pdb.set_trace()
+    partidos = Partido.objects.all().values()
+    list_partido = list(partidos)
+    return JsonResponse(list_partido, safe=False)
+
+
+def get_cargos(request):
+    #pdb.set_trace()
+    cargos = Cargo.objects.all().values()
+    list_cargo = list(cargos)
+    return JsonResponse(list_cargo, safe=False)
+
+def busca_candidato(request):
+    #pdb.set_trace()
+	nome_candidato = request.GET.get("nome_candidato", None)
+	candidatos = Candidato.objects.filter(nome=nome_candidato)
+	list_candidato = list(candidatos.values())
+	return JsonResponse(list_candidato, safe=False)

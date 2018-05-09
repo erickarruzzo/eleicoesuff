@@ -16,12 +16,7 @@
       <select class="custom-select" name="estado_register" id="estado_register" required>
         <option value="" hidden>Estado</option>
         {% for estado in estados %}
-            {% if form.estado_register.value == estado.id|stringformat:"i"  %}
-
-              <option value="{{ estado.id }}" selected>{{ estado.sigla }} </option>
-            {%else%}}
                <option value="{{ estado.id }}">{{ estado.sigla }}</option>
-            {%endif%}}
         {% endfor %}
       </select>
     </div>

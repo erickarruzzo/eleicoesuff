@@ -1,0 +1,22 @@
+{% extends "template_candidato.html" %}
+
+{% block body %}
+<form>
+	<div class="form-group">
+		<label for="nome_candidato">Nome</label>
+		<input type="text" class="form-control" id="nome_candidato" value="{{candidato.nome}}" readonly>
+	</div>
+	<div class="form-group">
+		<label for="partido_candidato">Partido</label>
+		<input type="text" class="form-control" id="cpf_candidato" value="{{candidato.partido_id.nome}} - {{candidato.partido_id.sigla}}" readonly>
+	</div>
+	<div class="form-group">
+		<label for="estado_candidato">Estado</label>
+		<input type="text" class="form-control" id="estado_candidato" value="{{candidato.estado_id.nome}}" readonly>
+	</div>
+	<div class="form-group">
+		<label for="cargo_candidato">E-mail</label>
+		<input type="text" class="form-control" id="cargo_candidato" value="{{candidato.cargo_id.nome}}" readonly>
+	</div>
+</form>
+{% endblock %}

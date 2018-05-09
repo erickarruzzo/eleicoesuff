@@ -4,7 +4,7 @@
 
     <meta charset="utf-8">
 
-    <title>Eleições 2018 - Cadastro de Voto</title>
+    <title>Eleições 2018</title>
 
     <link href='{% static "vendor/bootstrap/css/bootstrap.min.css" %}' rel="stylesheet">
     <link href='{% static "css/scrolling-nav.css" %}' rel="stylesheet">
@@ -32,7 +32,7 @@
 
     <header class="bg-primary text-white">
       <div class="container text-center">
-        <h1>Cadastro de voto</h1>
+        <h1>Informações de {{candidato.nome}} - {{candidato.partido_id.sigla}}</h1>
       </div>
     </header>
 
@@ -58,8 +58,6 @@
     <script src='{% static "vendor/bootstrap/js/bootstrap.bundle.min.js" %}'></script>
     <script src='{% static "vendor/jquery-easing/jquery.easing.min.js" %}'></script>
     <script src='{% static "js/scrolling-nav.js" %}'></script>
-    <script src='{% static "js/general.js" %}'></script>
-    <script src='{% static "js/voto.js" %}'></script>
 
   </body>
 

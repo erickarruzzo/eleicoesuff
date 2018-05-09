@@ -10,10 +10,10 @@
             <div style="list-style-type: none;">
               {% for candidato in candidatos %}
                   {% if candidato.cargo_id.id == cargo.id %}
-                      <div class="col-sm-5" style="display : inline-block">
+                      <div class="col-sm-5" style="display:inline-block">
                         <div class="card">
                           <div class="card-header">
-                            {{ candidato.nome }}
+                            <h3>{{ candidato.nome }}</h3>
                           </div>
                           <div class="card-body">
                             <h5 class="card-title">{{ candidato.partido_id.sigla }}</h5>
