@@ -3,22 +3,23 @@
 {% block body %}
   <form>
     {% csrf_token %}
-    <div id="lista_candidatos" style="list-style-type: none; margin:0;">
+    <div id="lista_candidatos">
       {% for cargo in cargos %}<br>
           {% if cargo.id == 1 %}
-          <div style="list-style-type: none; text-align: center" id="{{cargo.id}}-list"><h2>{{ cargo.nome }}</h2>
-            <div style="list-style-type: none;">
+          <div id="{{cargo.id}}-list" class="text-center"><h2>{{ cargo.nome }}</h2>
+            <div class="row">
               {% for candidato in candidatos %}
                   {% if candidato.cargo_id.id == cargo.id %}
-                      <div class="col-sm-5" style="display:inline-block">
+                      <div class="col-sm-6">
+                        <br>
                         <div class="card">
-                          <div class="card-header">
+                          <div class="card-header text-center">
                             <h3>{{ candidato.nome }}</h3>
                           </div>
                           <div class="card-body">
-                            <h5 class="card-title">{{ candidato.partido_id.sigla }}</h5>
-                            <p class="card-text">{{ candidato.estado_id.nome }}</p>
-                            <a style="color: white" onclick="votarCandidato({{candidato.id}}, {{usuario_ativo.id}}); $('#{{cargo.id}}-list').hide()" class="btn btn-primary">Selecionar</a>
+                            <h5 class="card-title text-center">{{ candidato.partido_id.sigla }}</h5>
+                            <p class="card-text text-center">{{ candidato.estado_id.nome }}</p>
+                            <a style="color: white" onclick="votarCandidato({{candidato.id}}, {{usuario_ativo.id}}); $('#{{cargo.id}}-list').hide()" class="btn btn-primary form-control">Selecionar</a>
                           </div>
                         </div>
                     </div>
@@ -27,19 +28,20 @@
             </div>
           </div>
           {% else %}
-          <div style="list-style-type: none; text-align: center" id="{{cargo.id}}-list"><h2>{{ cargo.nome }}</h2>
-            <div style="list-style-type: none;">
+          <div id="{{cargo.id}}-list" class="text-center"><h2>{{ cargo.nome }}</h2>
+            <div class="row">
               {% for candidato in candidatos %}
                   {% if candidato.cargo_id.id == cargo.id and candidato.estado_id == usuario_ativo.estado_id %}
-                      <div class="col-sm-5" style="display : inline-block">
+                      <div class="col-sm-6">
+                        <br>
                         <div class="card">
-                          <div class="card-header">
-                            {{ candidato.nome }}
+                          <div class="card-header text-center">
+                            <h3>{{ candidato.nome }}</h3>
                           </div>
                           <div class="card-body">
-                            <h5 class="card-title">{{ candidato.partido_id.sigla }}</h5>
-                            <p class="card-text">{{ candidato.estado_id.nome }}</p>
-                            <a style="color: white" onclick="votarCandidato({{candidato.id}}, {{usuario_ativo.id}}); $('#{{cargo.id}}-list').hide()" class="btn btn-primary">Selecionar</a>
+                            <h5 class="card-title text-center">{{ candidato.partido_id.sigla }}</h5>
+                            <p class="card-text text-center">{{ candidato.estado_id.nome }}</p>
+                            <a style="color: white" onclick="votarCandidato({{candidato.id}}, {{usuario_ativo.id}}); $('#{{cargo.id}}-list').hide()" class="btn btn-primary form-control">Selecionar</a>
                           </div>
                         </div>
                     </div>

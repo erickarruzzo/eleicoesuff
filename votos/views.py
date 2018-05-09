@@ -29,13 +29,18 @@ def realiza_voto(request, *a, **kw):
     usuario = Usuario.objects.get(id=usuario_id)
     candidato = Candidato.objects.get(id=candidato_id)
 
+    ja_votei = Voto.objects.filter(usuario_id=usuario.id, candidato_id__cargo_id_id=candidato.cargo_id_id).exists()
+
+    if ja_votei:
+        response = { 'response' : '0' }
+        return JsonResponse(response)
+
     #cria o voto
     voto = Voto(usuario_id=usuario,candidato_id=candidato)
 
     #grava no banco
     voto.save()
 
-    votos = Voto.objects.all().values()
+    response = { 'response' : '1' }
 
-    list_voto = list(votos)
-    return JsonResponse(list_voto, safe=False)
+    return JsonResponse(response)
