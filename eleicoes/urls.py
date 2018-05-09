@@ -11,4 +11,5 @@ urlpatterns = [
     url(r'^', include('cargos.urls')),
     url(r'^', include('candidatos.urls')),
     url(r'^', include('votos.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
 ]

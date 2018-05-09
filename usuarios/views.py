@@ -5,6 +5,7 @@ from eleicoes2018.models import Usuario, Estado
 from usuarios.forms import RegistrarUsuarioForm, AlterarUsuarioForm
 from django.views.generic.base import View
 from django.contrib.auth.hashers import PBKDF2PasswordHasher
+from django.contrib.auth.models import User
 
 
 class RegistrarUsuarioView(View):
@@ -27,12 +28,15 @@ class RegistrarUsuarioView(View):
             senha_hashed = hasher.encode(password=dados_form['senha_register1'],
                                          salt='salt',
                                          iterations=25000)
+
+            user = User.objects.create_user(username=dados_form['email_register'], email=dados_form['email_register'], password=dados_form['senha_register1'])
             #cria o usuario
             usuario = Usuario(cpf=dados_form['cpf_register'],
                                 nome=dados_form['nome_register'],
                                 email=dados_form['email_register'],
                                 estado_id=estado,
-                                senha=senha_hashed)
+                                senha=senha_hashed,
+                              user=user)
             #grava no banco
             usuario.save()
 

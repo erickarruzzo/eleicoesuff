@@ -6,6 +6,7 @@ class Estado(models.Model):
 	sigla = models.CharField(max_length=2, null=False)
 
 class Usuario(models.Model):
+	user = models.OneToOneField(User, on_delete=models.CASCADE, default=1)
 	cpf = models.CharField(max_length=11, null=False)
 	nome = models.CharField(max_length=255, null=False)
 	email = models.CharField(max_length=255, null=False)
