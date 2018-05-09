@@ -1,16 +1,16 @@
 from django.shortcuts import render, redirect
 from eleicoes2018.models import *
 from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
 import pdb
 
-def voto(request):
-    usuarios = Usuario.objects.all()
-    return render(request, 'registrar_voto1.html', { 'usuarios' : usuarios  })
-
-def carregaVoto(request, usuario_id):
+@login_required
+def carregaVoto(request):
+    current_user = request.user
+    #pdb.set_trace()
     cargos = Cargo.objects.all()
     candidatos = Candidato.objects.all()
-    usuario_ativo = Usuario.objects.get(id=usuario_id)
+    usuario_ativo = Usuario.objects.get(id=current_user.id)
     return render(request, 'registrar_voto2.html', { 'cargos' : cargos , 'candidatos' : candidatos, 'usuario_ativo' : usuario_ativo })
 
 
