@@ -18,6 +18,8 @@
 		<label for="email_perfil">E-mail</label>
 		<input type="email" class="form-control" id="email_perfil" value="{{usuario.email}}" readonly>
 	</div>
+	{% if user.id == usuario.id %}
   	<a href="{% url 'alterar_usuario' usuario_id=usuario.id %}" class="btn btn-primary">Alterar</a>
+	{% endif %}
 </form>
 {% endblock %}
