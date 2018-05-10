@@ -10,7 +10,7 @@
             <div class="row">
               {% for candidato in candidatos %}
                   {% if candidato.cargo_id.id == cargo.id %}
-                      <div class="col-sm-6">
+                      <div class="col-lg-6 col-sm-12">
                         <br>
                         <div class="card">
                           <div class="card-header text-center">
@@ -32,7 +32,7 @@
             <div class="row">
               {% for candidato in candidatos %}
                   {% if candidato.cargo_id.id == cargo.id and candidato.estado_id == usuario_ativo.estado_id %}
-                      <div class="col-sm-6">
+                      <div class="col-lg-6 col-sm-12">
                         <br>
                         <div class="card">
                           <div class="card-header text-center">
@@ -48,8 +48,8 @@
                   {% endif %}
               {% endfor %}
             </div>
-          </div>
           <br>
+          </div>
           {% endif %}
       {% endfor %}
     </div>

@@ -24,19 +24,19 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#candidatos">Candidatos</a>
+              <a class="nav-link js-scroll-trigger" href="#sobre">Sobre</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#usuarios">Usuários</a>
+              <a class="nav-link js-scroll-trigger" href="#candidatos">Candidatos</a>
             </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#regiao">Região</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="{% url 'voto_carregado' %}">Votar</a>
+              <a class="nav-link js-scroll-trigger" href="#votar">Votar</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="{% url 'boca_de_urna' %}">Boca de Urna</a>
+              <a class="nav-link js-scroll-trigger" href="#boca_de_urna">Boca de Urna</a>
             </li>
 
             {% if user.is_authenticated %}
@@ -64,61 +64,99 @@
       <div class="container text-center">
         <h1 style="font-size: 80px; position: relative">Eleições 2018</h1>
         <p class="lead">Sistema oficial das eleições de 2018</p>
-        <p>Eleições para os seguintes cargos:</p>
-        <p>Presidente da República, Governador, Senador, Deputado Federal e Deputado Federal</p>
-        <p>Primeiro Turno: 7 de Outubro / Segundo turno: 28 de Outubro</p>
       </div>
     </header>
+
+    <section id="sobre">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 mx-auto">
+            <h2>Sobre as eleições de 2018</h2>
+            <br>
+            <p>Eleições para os seguintes cargos:</p>
+            <p>Presidente da República, Governador, Senador, Deputado Federal e Deputado Federal</p>
+            <p>Primeiro Turno: 7 de Outubro / Segundo turno: 28 de Outubro</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <section id="candidatos" class="bg-light">
       <div class="container">
         <div class="row">
-          <div class="col-lg-8 mx-auto">
-            <h2>Busca por candidatos</h2>
+          <div class="col-lg-12 mx-auto">
+            <h2>Candidatos</h2>
             <form autocomplete="off" action="/action_page.php">
               <div class="form-group">
                 <div class="autocomplete">
                   <div class="input-group">
                     <input id="myInput" class="form-control" type="text" name="myCountry">
                     <div class="input-group-append">
-                      <button class="btn btn-primary" onclick="buscaCandidato($('#myInput').val())" type="button">Buscar</button>
+                      <button class="btn btn-primary form-control" onclick="buscaCandidato($('#myInput').val())" type="button">Buscar</button>
                     </div>
                   </div>
                 </div>
               </div>
             </form>
+            <br>
+            <div>
+            {% for candidato in candidatos %}
+                    <div><a href="/candidato/{{candidato.id}}">{{ candidato.nome }} / {{ candidato.partido_id.sigla }}</a></div>
+            {% endfor %}
+          </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="usuarios">
+    <section id="regiao">
       <div class="container">
         <div class="row">
-          <div class="col-lg-8 mx-auto">
-            <h2>Usuários criados</h2>
-            <ul>
-                {% for usuario in usuarios %}
-                    <li><a href="/usuario/{{usuario.id}}">{{ usuario.nome }} / {{ usuario.email }}</a></li>
-                {% endfor %}
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="regiao" class="bg-light">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 mx-auto">
+          <div class="col-lg-12 mx-auto">
             <h2>Estados presentes</h2>
+            <br>
+            <p>Segue abaixo a lista de estados presentes no sistema:</p>
             <ul>
                 {% for estado in estados %}
                     <li>{{ estado.nome }} - {{ estado.sigla }}</li>
                 {% endfor %}
             </ul>
             <br>
-            <a class="btn btn-primary" href="{% url 'registrar_estado' %}">Cadastrar estado</a>
+            <!--a class="btn btn-primary" href="{% url 'registrar_estado' %}">Cadastrar estado</a-->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="votar"  class="bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 mx-auto">
+            <h2>É hora de votar!</h2>
+            <br>
+            <p>Chegou a hora de votar</p>
+            <p>Sua intenção de voto será processada e contabilizada para nossa pesquisa de boca de urna.</p>
+            <p>Não perca tempo e vote!</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 mx-auto">
+            <a class="btn btn-primary" href="{% url 'voto_carregado' %}">Iniciar intenção de voto</a><br><br>
+            <b><span>OBS: É necessário realizar o login ou caso não tenha cadastro, cadastre-se <a href="{% url 'registrar_usuario' %}">aqui</a>.</span></b>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="boca_de_urna">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 mx-auto">
+            <h2>Boca de Urna</h2>
+            <br>
+            <p>Nessa seção você pode acompanhar qual candidato obtém mais votos, de acordo com seu cargo e estado.</p>
+            <br>
+            <a class="btn btn-primary" href="{% url 'boca_de_urna' %}">Boca de urna</a>
           </div>
         </div>
       </div>
