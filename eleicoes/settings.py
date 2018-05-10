@@ -43,7 +43,8 @@ INSTALLED_APPS = (
     'cargos',
     'candidatos',
     'votos',
-    'boca_de_urna'
+    'boca_de_urna',
+    'info_candidatos'
 )
 
 MIDDLEWARE = [
@@ -118,4 +119,3 @@ PASSWORD_HASHERS = [
 
 LOGIN_REDIRECT_URL = 'index'
 LOGOUT_REDIRECT_URL = 'index'
-

@@ -12,5 +12,6 @@ urlpatterns = [
     url(r'^', include('candidatos.urls')),
     url(r'^', include('votos.urls')),
     url(r'^', include('boca_de_urna.urls')),
+    url(r'^', include('info_candidatos.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
 ]

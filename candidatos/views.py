@@ -1,6 +1,6 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from eleicoes2018.models import Candidato, Estado, Partido, Cargo
+from eleicoes2018.models import *
 from candidatos.forms import RegistrarCandidatoForm
 from django.views.generic.base import View
 
@@ -39,5 +39,6 @@ class RegistrarCandidatoView(View):
         return render(request, self.template_name, {'form': form})
 
 def candidato(request, candidato_id):
-	candidato = Candidato.objects.get(id=candidato_id)
-	return render(request, 'candidato.html', { "candidato" : candidato })
+    candidato = Candidato.objects.get(id=candidato_id)
+    infos = Info.objects.filter(candidato_id_id=candidato_id)
+    return render(request, 'candidato.html', { "candidato" : candidato, 'infos' : infos })

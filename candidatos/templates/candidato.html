@@ -18,5 +18,11 @@
 		<label for="cargo_candidato">Cargo concorrido</label>
 		<input type="text" class="form-control" id="cargo_candidato" value="{{candidato.cargo_id.nome}}" readonly>
 	</div>
+	<div class="form-group">
+		<label for="cargo_candidato">Informações adicionais</label>
+		{% for info in infos %}
+					<textarea maxlength="255" class="form-control" name="info_register" id="info_register" placeholder="Informação do candidato" readonly>{{ info.texto }}</textarea>
+		{% endfor %}
+	</div>
 </form>
 {% endblock %}
