@@ -32,3 +32,37 @@ def contador_votos(request, candidatos, cargo, estado):
     json_string = json.dumps(votos)
 
     return JsonResponse(json_string)
+
+def get_votos_por_cargo(request, *a, **kw):
+    cargo_id = request.GET.get("cargo", None)
+
+    #pdb.set_trace()
+
+    votos = Voto.objects.filter(candidato_id__cargo_id_id=cargo_id).count()
+
+    response = { 'response' : votos }
+
+    return JsonResponse(response)
+
+def get_votos_por_cargo_estado(request, *a, **kw):
+    cargo_id = request.GET.get("cargo", None)
+    estado_id = request.GET.get("estado", None)
+
+    #pdb.set_trace()
+
+    votos = Voto.objects.filter(candidato_id__cargo_id_id=cargo_id, candidato_id__estado_id_id=estado_id).count()
+
+    response = { 'response' : votos }
+
+    return JsonResponse(response)
+
+def get_votos_por_candidato(request, *a, **kw):
+    candidato_id = request.GET.get("candidato", None)
+
+    #pdb.set_trace()
+
+    votos = Voto.objects.filter(candidato_id_id=candidato_id).count()
+
+    response = { 'response' : votos }
+
+    return JsonResponse(response)

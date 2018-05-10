@@ -1,9 +1,3 @@
-<!--h2>Login</h2>
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Login</button>
-</form-->
 {% load staticfiles %}
 <!DOCTYPE html>
   <head>
@@ -18,7 +12,7 @@
   </head>
 
   <body>
-    <div class="centraliza col-xs-6">
+    <div class="centraliza col-sm-6">
       <div class="card">
         <div class="card-header">
           <ul class="nav nav-tabs card-header-tabs">
@@ -28,7 +22,7 @@
           </ul>
         </div>
         <div class="card-body">
-          <div class="col-xs-12" id="login_form">
+          <div id="login_form">
             <form method="post">
               {% csrf_token %}
               <div class="form-group">
@@ -38,6 +32,8 @@
                 <input type="password" class="form-control" name="password" id="id_password" placeholder="Senha" required>
               </div>
               <button type="submit" class="btn btn-primary col-sm-12">Entrar</button>
+              <br>
+              <span>Caso não possua acesso, cadastre-se <a href="{% url 'registrar_usuario' %}">aqui</a>.</span>
             </form>
           </div>
         </div>
@@ -50,5 +46,4 @@
 
   <script src='{% static "vendor/jquery/jquery.min.js" %}'></script>
   <script src='{% static "vendor/bootstrap/js/bootstrap.min.js" %}'></script>
-  <script src='{% static "js/login.js" %}'></script>
 </html>

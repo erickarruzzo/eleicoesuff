@@ -19,8 +19,6 @@ def carregaVoto(request):
 @csrf_exempt
 @login_required
 def realiza_voto(request, *a, **kw):
-    # Notice I didn't directly try to access request.GET["check_this"]
-    #code.interact(local=dict(globals(), **locals()))
     usuario_id = request.POST.get("usuario_id", None)
     candidato_id = request.POST.get("candidato_id", None)
 

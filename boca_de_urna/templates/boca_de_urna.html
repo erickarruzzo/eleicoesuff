@@ -55,13 +55,23 @@
     <section id="presidente">
       <div class="container">
         <div class="row">
-          <div class="col-lg-8 mx-auto">
-            <h2>Presidente - ({{candidatos_list}} votos) </h2>
+          <div class="col-lg-12 mx-auto">
+            <h2>Presidente - (<span id="votos_total_1"></span>)</h2>
             <br>
-            <div id="lista_1"><!--
-                {% for presidente in presidentes %}
-                    <h3><a href="/candidato/{{presidente.id}}">{{ presidente.nome }} - {{ presidente.partido_id.sigla }}/{{ presidente.estado_id.sigla }}</a></h3>
-                {% endfor %}-->
+            <div class="bd-example bd-example-tabs">
+              <div class="row">
+                <div class="col-3">
+                  <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#lista_1" role="tab" aria-controls="lista_1" aria-selected="true">Brasil</a>
+                  </div>
+                </div>
+                <div class="col-9">
+                  <div class="tab-content" id="v-pills-tabContent">
+                    <div class="tab-pane fade show active" id="lista_1" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -71,12 +81,21 @@
     <section id="governador" class="bg-light">
       <div class="container">
         <div class="row">
-          <div class="col-lg-8 mx-auto">
-            <h2>Governador</h2>
+          <div class="col-lg-12 mx-auto">
+            <h2>Governador - (<span id="votos_total_2"></span>)</h2>
             <br>
-            <div id="lista_2">
+            <div class="bd-example bd-example-tabs">
+              <div class="row">
+                <div class="col-4">
+                  <div class="nav flex-column nav-pills" id="lista_2" role="tablist" aria-orientation="vertical">
+                  </div>
+                </div>
+                <div class="col-8">
+                  <div class="tab-content" id="tabContent_2">
+                  </div>
+                </div>
+              </div>
             </div>
-
           </div>
         </div>
       </div>
@@ -85,12 +104,21 @@
     <section id="senador">
       <div class="container">
         <div class="row">
-          <div class="col-lg-8 mx-auto">
-            <h2>Senador</h2>
+          <div class="col-lg-12 mx-auto">
+            <h2>Senador - (<span id="votos_total_3"></span>)</h2>
             <br>
-            <div id="lista_3">
+            <div class="bd-example bd-example-tabs">
+              <div class="row">
+                <div class="col-4">
+                  <div class="nav flex-column nav-pills" id="lista_3" role="tablist" aria-orientation="vertical">
+                  </div>
+                </div>
+                <div class="col-8">
+                  <div class="tab-content" id="tabContent_3">
+                  </div>
+                </div>
+              </div>
             </div>
-
           </div>
         </div>
       </div>
@@ -99,12 +127,21 @@
     <section id="federal" class="bg-light">
       <div class="container">
         <div class="row">
-          <div class="col-lg-8 mx-auto">
-            <h2>Deputado Federal</h2>
+          <div class="col-lg-12 mx-auto">
+            <h2>Deputado Federal - (<span id="votos_total_4"></span>)</h2>
             <br>
-            <div id="lista_4">
+            <div class="bd-example bd-example-tabs">
+              <div class="row">
+                <div class="col-4">
+                  <div class="nav flex-column nav-pills" id="lista_4" role="tablist" aria-orientation="vertical">
+                  </div>
+                </div>
+                <div class="col-8">
+                  <div class="tab-content" id="tabContent_4">
+                  </div>
+                </div>
+              </div>
             </div>
-
           </div>
         </div>
       </div>
@@ -113,12 +150,21 @@
     <section id="estadual">
       <div class="container">
         <div class="row">
-          <div class="col-lg-8 mx-auto">
-            <h2>Deputado Estadual</h2>
+          <div class="col-lg-12 mx-auto">
+            <h2>Deputado Estadual - (<span id="votos_total_5"></span>)</h2>
             <br>
-            <div id="lista_5">
+            <div class="bd-example bd-example-tabs">
+              <div class="row">
+                <div class="col-4">
+                  <div class="nav flex-column nav-pills" id="lista_5" role="tablist" aria-orientation="vertical">
+                  </div>
+                </div>
+                <div class="col-8">
+                  <div class="tab-content" id="tabContent_5">
+                  </div>
+                </div>
+              </div>
             </div>
-
           </div>
         </div>
       </div>

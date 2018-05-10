@@ -33,7 +33,10 @@
               <a class="nav-link js-scroll-trigger" href="#regiao">Região</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="/voto">Votar</a>
+              <a class="nav-link js-scroll-trigger" href="{% url 'voto_carregado' %}">Votar</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="{% url 'boca_de_urna' %}">Boca de Urna</a>
             </li>
 
             {% if user.is_authenticated %}
@@ -96,8 +99,6 @@
                     <li><a href="/usuario/{{usuario.id}}">{{ usuario.nome }} / {{ usuario.email }}</a></li>
                 {% endfor %}
             </ul>
-            <br>
-            <a class="btn btn-primary" href="{% url 'registrar_usuario' %}">Cadastrar usuário</a>
           </div>
         </div>
       </div>
