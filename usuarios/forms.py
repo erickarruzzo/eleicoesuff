@@ -15,10 +15,15 @@ class RegistrarUsuarioForm(forms.Form):
                 self.adiciona_erro('Por favor, verifique os dados informados')
                 valid = False
 
-            usuario_existe = Usuario.objects.filter(cpf=self.data['cpf_register']).exists()
+            cpf_existe = Usuario.objects.filter(cpf=self.data['cpf_register']).exists()
+            email_existe = Usuario.objects.filter(email=self.data['email_register']).exists()
 
-            if usuario_existe:
+            if cpf_existe:
                 self.adiciona_erro('CPF já cadastrado, favor inserir outro.')
+                valid = False
+
+            if email_existe:
+                self.adiciona_erro('Email já cadastrado, favor inserir outro.')
                 valid = False
 
             if(len(self.data['cpf_register']) != 11):
