@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+import datetime
 
 class Estado(models.Model):
 	nome = models.CharField(max_length=255, null=False)
@@ -34,3 +35,16 @@ class Voto(models.Model):
 class Info(models.Model):
 	texto = models.CharField(max_length=255, null=False)
 	candidato_id = models.ForeignKey(Candidato, on_delete=models.CASCADE)
+
+class Noticia(models.Model):
+	titulo = models.CharField(max_length=255, null=False)
+	link = models.CharField(max_length=255, null=False)
+	data = models.DateTimeField(default=datetime.date.today)
+
+#class LocalVotacao(models.Model):
+#	titulo = models.CharField(max_length=255, null=False)
+#	link = models.CharField(max_length=255, null=False)
+
+#class InfoCargo(models.Model):
+#	texto = models.CharField(max_length=500, null=False)
+#	salario = models.FloatField(null=False)

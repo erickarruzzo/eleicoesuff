@@ -10,7 +10,8 @@ def index(request):
 	partidos = Partido.objects.all()
 	cargos = Cargo.objects.all()
 	candidatos = Candidato.objects.all().order_by('nome')
-	return render(request, 'index.html', { 'usuarios' : usuarios , 'estados' : estados , 'partidos' : partidos , 'cargos' : cargos , 'candidatos' : candidatos })
+	noticias = Noticia.objects.all().order_by('-data')
+	return render(request, 'index.html', { 'usuarios' : usuarios , 'estados' : estados , 'partidos' : partidos , 'cargos' : cargos , 'candidatos' : candidatos , 'noticias' : noticias })
 
 def get_candidatos(request):
     #pdb.set_trace()

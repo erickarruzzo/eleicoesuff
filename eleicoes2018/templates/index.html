@@ -73,7 +73,7 @@
     <section id="sobre">
       <div class="container">
         <div class="row">
-          <div class="col-lg-12 mx-auto">
+          <div class="col-lg-12 col-sm-12 mx-auto">
             <h2>Sobre as eleições de 2018</h2>
             <br>
             <p>Eleições para os seguintes cargos:</p>
@@ -87,7 +87,7 @@
     <section id="candidatos" class="bg-light">
       <div class="container">
         <div class="row">
-          <div class="col-lg-12 mx-auto">
+          <div class="col-lg-12 col-sm-12 mx-auto">
             <h2>Candidatos</h2>
             <form autocomplete="off" action="/action_page.php">
               <div class="form-group">
@@ -115,7 +115,7 @@
     <section id="regiao">
       <div class="container">
         <div class="row">
-          <div class="col-lg-12 mx-auto">
+          <div class="col-lg-12 col-sm-12 mx-auto">
             <h2>Estados presentes</h2>
             <br>
             <p>Segue abaixo a lista de estados presentes no sistema:</p>
@@ -134,7 +134,7 @@
     <section id="votar" class="bg-light">
       <div class="container">
         <div class="row">
-          <div class="col-lg-12 mx-auto">
+          <div class="col-lg-12 col-sm-12 mx-auto">
             <h2>É hora de votar!</h2>
             <br>
             <p>Chegou a hora de votar</p>
@@ -143,7 +143,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-lg-12 mx-auto">
+          <div class="col-lg-12 col-sm-12 mx-auto">
             <a class="btn btn-primary" href="{% url 'voto_carregado' %}">Iniciar intenção de voto</a><br><br>
             <b><span>OBS: É necessário realizar o login ou caso não tenha cadastro, cadastre-se <a href="{% url 'registrar_usuario' %}">aqui</a>.</span></b>
           </div>
@@ -154,7 +154,7 @@
     <section id="boca_de_urna">
       <div class="container">
         <div class="row">
-          <div class="col-lg-12 mx-auto">
+          <div class="col-lg-12 col-sm-12 mx-auto">
             <h2>Boca de Urna</h2>
             <br>
             <p>Nessa seção você pode acompanhar qual candidato obtém mais votos, de acordo com seu cargo e estado.</p>
@@ -168,60 +168,24 @@
     <section id="noticias" class="bg-light">
       <div class="container">
         <div class="row">
-          <div class="col-lg-12 mx-auto">
+          <div class="col-lg-12 col-sm-12 mx-auto">
             <h2>Principais notícias sobre as eleições</h3>
             <br>
             <br>
           </div>
         </div>
-        <div class="row">
-          <div class="col-lg-12 mx-auto">
-            <h3><a href="http://www.destakjornal.com.br/cidades/detalhe/eleitores-fazem-filas-nos-cartorios-eleitorais-do-df">Eleitores fazem filas nos cartórios eleitorais do DF</a></h3>
-            <br>
-            <img src="../static/images/not1.jpg" style="height: 500px; width: 1000px" href="http://www.destakjornal.com.br/cidades/detalhe/eleitores-fazem-filas-nos-cartorios-eleitorais-do-df" class="img-fluid" alt="Eleitores fazem filas nos cartórios eleitorais do DF">
-            <br>
-            <br>
-            <a class="btn btn-primary" href="http://www.destakjornal.com.br/cidades/detalhe/eleitores-fazem-filas-nos-cartorios-eleitorais-do-df">Ler mais</a>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
+        {% for noticia in noticias %}
+          <div class="row">
+            <div class="col-lg-12 mx-auto">
+              <h3><a href="{{ noticia.link }}">{{ noticia.titulo }}</a></h3>
+              {% load tz %}
+              <p class="lead" style="color: grey">{{ noticia.data|date:"d-m-Y H:i" }}</p>
+              <br>
+              <a href={{ noticia.link }}><img src="../static/images/noticias/not{{noticia.id}}.jpg" style="height: 500px; width: 900px" href="{{ noticia.link }}" class="img-fluid" alt="{{ noticia.titulo }}"></a>
+              <br><br><br><br><br><br>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-12 mx-auto">
-            <h3><a href="http://politica.estadao.com.br/noticias/eleicoes,militares-se-unem-para-lancar-71-candidatos-nas-eleicoes-2018,70002300707">Militares se unem para lançar 71 candidatos nas eleições 2018</a></h3>
-            <br>
-            <img src="../static/images/not2.jpg" style="height: 500px; width: 1000px" onclick="windows.href = http://politica.estadao.com.br/noticias/eleicoes,militares-se-unem-para-lancar-71-candidatos-nas-eleicoes-2018,70002300707" class="img-fluid" alt="Eleitores fazem filas nos cartórios eleitorais do DF">
-            <br>
-            <br>
-            <a class="btn btn-primary" href="http://politica.estadao.com.br/noticias/eleicoes,militares-se-unem-para-lancar-71-candidatos-nas-eleicoes-2018,70002300707">Ler mais</a>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-12 mx-auto">
-            <h3><a href="http://www.infomoney.com.br/minhas-financas/consumo/noticia/7405551/eleicoes-2018-termina-nesta-quarta-feira-prazo-para-regularizar-transferir">Termina nesta quarta-feira prazo para regularizar ou transferir seu título</a></h3>
-            <br>
-            <img src="../static/images/not3.jpg" style="height: 500px; width: 1000px" href="http://www.infomoney.com.br/minhas-financas/consumo/noticia/7405551/eleicoes-2018-termina-nesta-quarta-feira-prazo-para-regularizar-transferir" class="img-fluid" alt="Termina nesta quarta-feira prazo para regularizar ou transferir seu título">
-            <br>
-            <br>
-            <a class="btn btn-primary" href="http://www.infomoney.com.br/minhas-financas/consumo/noticia/7405551/eleicoes-2018-termina-nesta-quarta-feira-prazo-para-regularizar-transferir">Ler mais</a>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-          </div>
-        </div>
+        {% endfor %}
       </div>
     </section>
 

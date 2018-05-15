@@ -46,7 +46,8 @@ INSTALLED_APPS = (
     'candidatos',
     'votos',
     'boca_de_urna',
-    'info_candidatos'
+    'info_candidatos',
+    'noticias'
 )
 
 MIDDLEWARE = [
