@@ -4,6 +4,7 @@ from eleicoes2018.models import Estado
 from estados.forms import RegistrarEstadoForm
 from django.views.generic.base import View
 
+
 class RegistrarEstadoView(View):
 
     template_name = 'registrar_estado.html'

@@ -1,6 +1,7 @@
 from django import forms
 from eleicoes2018.models import Estado
 
+
 class RegistrarEstadoForm(forms.Form):
 
     nome_register = forms.CharField(required=True)

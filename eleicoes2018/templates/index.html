@@ -45,7 +45,7 @@
             {% if user.is_authenticated %}
 
             <li class="nav-item">
-              <a href="usuario/{{user.id}}" class="nav-link">  {{ user.username }} </a>
+              <a href="{% url 'usuario' user.id %}" class="nav-link">  {{ user.username }} </a>
             </li>
 
 
@@ -104,7 +104,7 @@
             <br>
             <div>
             {% for candidato in candidatos %}
-                    <div><a href="/candidato/{{candidato.id}}">{{ candidato.nome }} / {{ candidato.partido_id.sigla }}</a></div>
+                    <div><a href="{% url 'candidato' candidato.id %}">{{ candidato.nome }} / {{ candidato.partido_id.sigla }}</a></div>
             {% endfor %}
           </div>
           </div>
