@@ -27,14 +27,14 @@ def realiza_voto(request, *a, **kw):
     usuario = Usuario.objects.get(id=usuario_id)
     candidato = Candidato.objects.get(id=candidato_id)
 
-    ja_votei = Voto.objects.filter(usuario_id=usuario.id, candidato_id__cargo_id_id=candidato.cargo_id_id).exists()
+    ja_votei = Voto.objects.filter(usuario=usuario.id, candidato__cargo_id=candidato.cargo_id).exists()
 
     if ja_votei:
         response = { 'response' : '0' }
         return JsonResponse(response)
 
     #cria o voto
-    voto = Voto(usuario_id=usuario,candidato_id=candidato)
+    voto = Voto(usuario=usuario,candidato=candidato)
 
     #grava no banco
     voto.save()

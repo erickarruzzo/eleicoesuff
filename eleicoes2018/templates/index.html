@@ -91,22 +91,24 @@
             <h2>Candidatos</h2>
             <form autocomplete="off" action="/action_page.php">
               <div class="form-group">
-                <div class="autocomplete">
-                  <div class="input-group">
-                    <input id="myInput" class="form-control" type="text" name="myCountry">
-                    <div class="input-group-append">
-                      <button class="btn btn-primary form-control" onclick="buscaCandidato($('#myInput').val())" type="button">Buscar</button>
+                <div class="row">
+                  <div class="autocomplete col-lg-6">
+                    <div class="input-group">
+                      <input id="myInput" class="form-control" type="text" name="myCountry">
+                      <div class="input-group-append">
+                        <button class="btn btn-primary form-control" onclick="buscaCandidato($('#myInput').val())" type="button">Buscar</button>
+                      </div>
                     </div>
+                  </div>
+                </div>
+                <br>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <a class="btn btn-primary" href="{% url 'candidatos' %}">Lista de Candidatos</a>
                   </div>
                 </div>
               </div>
             </form>
-            <br>
-            <div>
-            {% for candidato in candidatos %}
-                    <div><a href="{% url 'candidato' candidato.id %}">{{ candidato.nome }} / {{ candidato.partido_id.sigla }}</a></div>
-            {% endfor %}
-          </div>
           </div>
         </div>
       </div>

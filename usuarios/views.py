@@ -34,7 +34,7 @@ class RegistrarUsuarioView(View):
             usuario = Usuario(cpf=dados_form['cpf_register'],
                                 nome=dados_form['nome_register'],
                                 email=dados_form['email_register'],
-                                estado_id=estado,
+                                estado=estado,
                                 senha=senha_hashed,
                               user=user)
             #grava no banco
@@ -73,7 +73,7 @@ class AlterarUsuarioView(View):
             usuario.cpf = dados_form['cpf_perfil']
             usuario.nome = dados_form['nome_perfil']
             usuario.email = dados_form['email_perfil']
-            usuario.estado_id = estado
+            usuario.estado = estado
 
             #grava no banco
             usuario.save()

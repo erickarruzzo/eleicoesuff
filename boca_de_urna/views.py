@@ -12,11 +12,11 @@ def boca_de_urna(request):
     partidos = Partido.objects.all()
     cargos = Cargo.objects.all()
     candidatos = Candidato.objects.all()
-    presidentes = Candidato.objects.filter(cargo_id=1) #presidente
-    governadores = Candidato.objects.filter(cargo_id=2) #governador
-    senadores = Candidato.objects.filter(cargo_id=3) #senador
-    federais = Candidato.objects.filter(cargo_id=4) #deputado federal
-    estaduais = Candidato.objects.filter(cargo_id=5) #deputado estadual
+    presidentes = Candidato.objects.filter(cargo=1) #presidente
+    governadores = Candidato.objects.filter(cargo=2) #governador
+    senadores = Candidato.objects.filter(cargo=3) #senador
+    federais = Candidato.objects.filter(cargo=4) #deputado federal
+    estaduais = Candidato.objects.filter(cargo=5) #deputado estadual
 
     return render(request, 'boca_de_urna.html', { 'usuarios':usuarios, 'estados':estados, 'partidos':partidos,
     'cargos':cargos, 'candidatos':candidatos, 'presidentes':presidentes, 'governadores':governadores,
@@ -25,9 +25,9 @@ def boca_de_urna(request):
 def contador_votos(request, candidatos, cargo, estado):
 
     if cargo.id != 1:
-        votos = Voto.objects.filter(candidato_id__cargo_id_id=cargo.id, candidato_id__estado_id_id=estado.id)
+        votos = Voto.objects.filter(candidato__cargo_id=cargo.id, candidato__estado_id=estado.id)
     else:
-        votos = Voto.objects.filter(candidato_id__cargo_id_id=cargo.id)
+        votos = Voto.objects.filter(candidato_id__cargo_id=cargo.id)
 
     json_string = json.dumps(votos)
 
@@ -38,7 +38,7 @@ def get_votos_por_cargo(request, *a, **kw):
 
     #pdb.set_trace()
 
-    votos = Voto.objects.filter(candidato_id__cargo_id_id=cargo_id).count()
+    votos = Voto.objects.filter(candidato__cargo_id=cargo_id).count()
 
     response = { 'response' : votos }
 
@@ -50,7 +50,7 @@ def get_votos_por_cargo_estado(request, *a, **kw):
 
     #pdb.set_trace()
 
-    votos = Voto.objects.filter(candidato_id__cargo_id_id=cargo_id, candidato_id__estado_id_id=estado_id).count()
+    votos = Voto.objects.filter(candidato__cargo_id=cargo_id, candidato__estado_id=estado_id).count()
 
     response = { 'response' : votos }
 
@@ -61,7 +61,7 @@ def get_votos_por_candidato(request, *a, **kw):
 
     #pdb.set_trace()
 
-    votos = Voto.objects.filter(candidato_id_id=candidato_id).count()
+    votos = Voto.objects.filter(candidato_id=candidato_id).count()
 
     response = { 'response' : votos }
 

@@ -5,8 +5,8 @@ function populaPresidente(){
   var cargos = cargos_global;
 
   for (i=0;i<candidatos.length;i++){
-    if (candidatos[i].cargo_id_id==1){
-      $("#lista_1").append('<h3><a href="/candidato/' + candidatos[i].id + '">' + candidatos[i].nome + ' - ' + partidos[candidatos[i].partido_id_id - 1].sigla + '/' + estados[candidatos[i].estado_id_id - 1].sigla + '</a> (<span id="candidato_' + candidatos[i].id + '"></span>)</h4>');
+    if (candidatos[i].cargo_id==1){
+      $("#lista_1").append('<h3><a href="/candidato/' + candidatos[i].id + '">' + candidatos[i].nome + ' - ' + partidos[candidatos[i].partido_id -1].sigla + '/' + estados[candidatos[i].estado_id - 1].sigla + '</a> (<span id="candidato_' + candidatos[i].id + '"></span>)</h4>');
     }
   }
 }
@@ -32,9 +32,9 @@ function populaCargos(cargo_id){
     }
 
     for (j=0;j<candidatos.length;j++){
-      if (estados[i].id == candidatos[j].estado_id_id){
-        if (candidatos[j].cargo_id_id == cargo_id){
-            $("#body_" + estados[i].id + cargo_id).append('<h3><a href="/candidato/' + candidatos[j].id + '">' + candidatos[j].nome + ' - ' + partidos[candidatos[j].partido_id_id - 1].sigla + '/' + estados[candidatos[j].estado_id_id - 1].sigla + '</a> (<span id="candidato_' + candidatos[j].id + '"></span>)</h4>');
+      if (estados[i].id == candidatos[j].estado_id){
+        if (candidatos[j].cargo_id == cargo_id){
+            $("#body_" + estados[i].id + cargo_id).append('<h3><a href="/candidato/' + candidatos[j].id + '">' + candidatos[j].nome + ' - ' + partidos[candidatos[j].partido_id - 1].sigla + '/' + estados[candidatos[j].estado_id - 1].sigla + '</a> (<span id="candidato_' + candidatos[j].id + '"></span>)</h4>');
         }
       }
     }

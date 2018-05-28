@@ -23,7 +23,7 @@ class RegistrarInfoView(View):
             candidato = Candidato.objects.get(id=dados_form['candidato_register'])
 
             #cria a info
-            info = Info(texto=dados_form['info_register'],candidato_id=candidato)
+            info = Info(texto=dados_form['info_register'],candidato=candidato)
 
             #grava no banco
             info.save()

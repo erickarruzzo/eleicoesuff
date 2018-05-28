@@ -3,7 +3,7 @@
 {% block body %}
 <form>
 	<div class="form-group text-center">
-		<img src="../static/images/candidatos/can{{candidato.id}}.jpg" style="height: 300px; width: 200px; border-image::1px" class="img-fluid" alt="{{candidato.nome}}">
+		<img src="../static/images/candidatos/can{{candidato.id}}.jpg" style="height: 300px; width: 250px; border-image::1px" class="img-fluid" alt="{{candidato.nome}}">
 	</div>
 	<div class="form-group">
 		<label for="nome_candidato">Nome</label>
@@ -11,20 +11,20 @@
 	</div>
 	<div class="form-group">
 		<label for="partido_candidato">Partido</label>
-		<input type="text" class="form-control" id="cpf_candidato" value="{{candidato.partido_id.nome}} - {{candidato.partido_id.sigla}}" readonly>
+		<input type="text" class="form-control" id="cpf_candidato" value="{{candidato.partido.nome}} - {{candidato.partido.sigla}}" readonly>
 	</div>
 	<div class="form-group">
 		<label for="estado_candidato">Estado</label>
-		<input type="text" class="form-control" id="estado_candidato" value="{{candidato.estado_id.nome}}" readonly>
+		<input type="text" class="form-control" id="estado_candidato" value="{{candidato.estado.nome}}" readonly>
 	</div>
 	<div class="form-group">
 		<label for="cargo_candidato">Cargo concorrido</label>
-		<input type="text" class="form-control" id="cargo_candidato" value="{{candidato.cargo_id.nome}}" readonly>
+		<input type="text" class="form-control" id="cargo_candidato" value="{{candidato.cargo.nome}}" readonly>
 	</div>
 	<div class="form-group">
-		<label for="cargo_candidato">Informações adicionais</label>
 		{% for info in infos %}
-					<textarea maxlength="255" class="form-control" name="info_register" id="info_register" placeholder="Informação do candidato" readonly>{{ info.texto }}</textarea>
+			<label for="cargo_candidato">Informações adicionais</label>
+			<textarea maxlength="255" class="form-control" name="info_register" id="info_register" placeholder="Informação do candidato" readonly>{{ info.texto }}</textarea>
 		{% endfor %}
 	</div>
 </form>

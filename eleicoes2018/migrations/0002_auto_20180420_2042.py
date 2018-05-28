@@ -88,7 +88,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='usuario',
             name='cpf',
-            field=models.CharField(default=datetime.datetime(2018, 4, 20, 20, 42, 8, 226923, tzinfo=utc), max_length=11),
+            field=models.CharField(max_length=11),
             preserve_default=False,
         ),
         migrations.AddField(

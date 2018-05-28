@@ -9,7 +9,7 @@
           <div id="{{cargo.id}}-list" class="text-center"><h2>{{ cargo.nome }}</h2>
             <div class="row">
               {% for candidato in candidatos %}
-                  {% if candidato.cargo_id.id == cargo.id %}
+                  {% if candidato.cargo.id == cargo.id %}
                       <div class="col-lg-6 col-sm-12">
                         <br>
                         <div class="card">
@@ -17,8 +17,8 @@
                             <h3>{{ candidato.nome }}</h3>
                           </div>
                           <div class="card-body">
-                            <h5 class="card-title text-center">{{ candidato.partido_id.sigla }}</h5>
-                            <p class="card-text text-center">{{ candidato.estado_id.nome }}</p>
+                            <h5 class="card-title text-center">{{ candidato.partido.sigla }}</h5>
+                            <p class="card-text text-center">{{ candidato.estado.nome }}</p>
                             <a style="color: white" onclick="votarCandidato({{candidato.id}}, {{usuario_ativo.id}}); $('#{{cargo.id}}-list').hide()" class="btn btn-primary form-control">Selecionar</a>
                           </div>
                         </div>
@@ -31,7 +31,7 @@
           <div id="{{cargo.id}}-list" class="text-center"><h2>{{ cargo.nome }}</h2>
             <div class="row">
               {% for candidato in candidatos %}
-                  {% if candidato.cargo_id.id == cargo.id and candidato.estado_id == usuario_ativo.estado_id %}
+                  {% if candidato.cargo.id == cargo.id and candidato.estado == usuario_ativo.estado %}
                       <div class="col-lg-6 col-sm-12">
                         <br>
                         <div class="card">
@@ -39,8 +39,8 @@
                             <h3>{{ candidato.nome }}</h3>
                           </div>
                           <div class="card-body">
-                            <h5 class="card-title text-center">{{ candidato.partido_id.sigla }}</h5>
-                            <p class="card-text text-center">{{ candidato.estado_id.nome }}</p>
+                            <h5 class="card-title text-center">{{ candidato.partido.sigla }}</h5>
+                            <p class="card-text text-center">{{ candidato.estado.nome }}</p>
                             <a style="color: white" onclick="votarCandidato({{candidato.id}}, {{usuario_ativo.id}}); $('#{{cargo.id}}-list').hide()" class="btn btn-primary form-control">Selecionar</a>
                           </div>
                         </div>

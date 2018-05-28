@@ -17,9 +17,9 @@
 	</div>
 	<div class="form-group">
     <label for="estado_perfil">Estado</label>
-    <select class="custom-select" name="estado_perfil" id="estado_perfil" name="estado_perfil" value="{{usuario.estado_id.id}}" required>
+    <select class="custom-select" name="estado_perfil" id="estado_perfil" name="estado_perfil" value="{{usuario.estado.id}}" required>
       {% for estado in estados %}
-          {% if usuario.estado_id.id == estado.id  %}
+          {% if usuario.estado.id == estado.id  %}
             <option value="{{ estado.id }}" selected>{{ estado.sigla }} </option>
           {%else%}}
             <option value="{{ estado.id }}">{{ estado.sigla }}</option>
