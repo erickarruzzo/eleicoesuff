@@ -68,6 +68,7 @@
                 <div class="col-9">
                   <div class="tab-content" id="v-pills-tabContent">
                     <div class="tab-pane fade show active" id="lista_1" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                        <canvas id="chartPresidente" width="1600" height="900"></canvas>
                     </div>
                   </div>
                 </div>
@@ -179,10 +180,11 @@
     <script src='{% static "vendor/jquery/jquery.min.js" %}'></script>
     <script src='{% static "vendor/bootstrap/js/bootstrap.bundle.min.js" %}'></script>
     <script src='{% static "vendor/jquery-easing/jquery.easing.min.js" %}'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
     <script src='{% static "js/scrolling-nav.js" %}'></script>
     <script src='{% static "js/general.js" %}'></script>
     <script src='{% static "js/boca_de_urna.js" %}'></script>
-
+    
   </body>
 
 </html>

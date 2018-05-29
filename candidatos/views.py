@@ -5,6 +5,7 @@ from eleicoes2018.models import *
 from candidatos.forms import RegistrarCandidatoForm
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.views.generic.base import View
+import pymysql.cursors
 import pdb
 
 class RegistrarCandidatoView(View):
@@ -63,18 +64,38 @@ def get_candidatos_com_filtro(request):
     estado_id = request.GET.get("estado", None)
     partido_id = request.GET.get("partido", None)
 
-    candidatos = Candidato.objects.all()
-    cargos = Cargo.objects.all().order_by('nome')
-    partidos = Partido.objects.all().order_by('nome')
-    estados = Estado.objects.all().order_by('nome')
-    candidatos_list = list()
+    #pdb.set_trace()
 
-    for candidato in candidatos:
-        if candidato.cargo == cargo_id:
-            candidatos_list.append(candidato)
-        if candidato.estado == estado_id:
-            candidatos_list.append(candidato)
-        if candidato.partido == partido_id:
-            candidatos_list.append(candidato)
+    # Conectando-se ao banco de dados
+    connection = pymysql.connect(host='localhost',
+                            user='erick',
+                            password='123',
+                            db='eleicoes',
+                            charset='utf8mb4',
+                            cursorclass=pymysql.cursors.DictCursor)
 
-    return render(request, 'candidatos.html', { "candidatos" : candidatos_list, "cargos" : cargos, "estados" : estados, "partidos" : partidos })
+    try:
+        with connection.cursor() as cursor:
+            # Read a single record
+            sql = "SELECT candidato.id, candidato.nome candidato, partido.sigla partido, estado.sigla estado, cargo.nome cargo FROM `eleicoes2018_candidato` candidato left join `eleicoes2018_partido` partido on candidato.partido_id = partido.id left join `eleicoes2018_estado` estado on candidato.estado_id = estado.id left join `eleicoes2018_cargo` cargo on candidato.cargo_id = cargo.id WHERE 1=1 "
+            
+            if nome != '': 
+                sql += "and candidato.nome like '%" + nome + "%' "
+            
+            if cargo_id != '':
+                sql += "and candidato.cargo_id =" + cargo_id + " "
+
+            if estado_id != '':
+                sql += "and candidato.estado_id =" + estado_id + " "
+
+            if partido_id != '':
+                sql += "and candidato.partido_id =" + partido_id + " "
+
+            cursor.execute(sql)
+            result = cursor.fetchall()
+
+            #pdb.set_trace()
+
+            return JsonResponse(result, safe=False)
+    finally:
+        connection.close()

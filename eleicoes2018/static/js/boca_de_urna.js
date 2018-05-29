@@ -3,12 +3,62 @@ function populaPresidente(){
   var partidos = partidos_global;
   var estados = estados_global;
   var cargos = cargos_global;
+  var presidentes = [];
+  var votosPresidentes = [];
 
   for (i=0;i<candidatos.length;i++){
     if (candidatos[i].cargo_id==1){
-      $("#lista_1").append('<h3><a href="/candidato/' + candidatos[i].id + '">' + candidatos[i].nome + ' - ' + partidos[candidatos[i].partido_id -1].sigla + '/' + estados[candidatos[i].estado_id - 1].sigla + '</a> (<span id="candidato_' + candidatos[i].id + '"></span>)</h4>');
+      presidentes.push(candidatos[i].nome);
+      votos = getVotosPorCandidato(candidatos[i].id)
+      votosPresidentes.push(votos)
     }
   }
+
+  criaGrafico(presidentes, votosPresidentes, "chartPresidente")
+
+  //for (i=0;i<candidatos.length;i++){
+  //  if (candidatos[i].cargo_id==1){
+  //    $("#lista_1").append('<h3><a href="/candidato/' + candidatos[i].id + '">' + candidatos[i].nome + ' - ' + partidos[candidatos[i].partido_id -1].sigla + '/' + estados[candidatos[i].estado_id - 1].sigla + '</a> (<span id="candidato_' + candidatos[i].id + '"></span>)</h4>');
+  //  }
+  //}
+}
+
+function getRandomColor(numero) {
+  colors = [];
+  for (i=0;i<numero;i++){
+    color = '#' + (Math.random().toString(16) + '0000000').slice(2, 8);
+    colors.push(color);
+  }
+  return colors;
+}
+
+function criaGrafico(candidatos, valores, nome){
+
+  var ctx = document.getElementById(nome);
+  var myChart = new Chart(ctx, {
+  type: 'bar',
+  data: {
+      labels: candidatos,
+      datasets: [{
+          label: 'Número de votos',
+          data: valores,
+          backgroundColor: getRandomColor(candidatos.length),
+          borderWidth: 1
+      }]
+  },
+  options: {
+    legend: {
+      display: false
+    },
+    scales: {
+        yAxes: [{
+            ticks: {
+                beginAtZero:true
+            }
+        }]
+    }
+  }
+  });
 }
 
 function populaCargos(cargo_id){
@@ -31,13 +81,23 @@ function populaCargos(cargo_id){
       $("#tabContent_" + cargo_id).append('<div class="tab-pane fade" id="body_' + estados[i].id + cargo_id + '" role="tabpanel" aria-labelledby="' + estados[i].id + '-tab"></div>');
     }
 
+    var candidatosTemp = [];
+    var votosTemp = [];
+
     for (j=0;j<candidatos.length;j++){
       if (estados[i].id == candidatos[j].estado_id){
         if (candidatos[j].cargo_id == cargo_id){
-            $("#body_" + estados[i].id + cargo_id).append('<h3><a href="/candidato/' + candidatos[j].id + '">' + candidatos[j].nome + ' - ' + partidos[candidatos[j].partido_id - 1].sigla + '/' + estados[candidatos[j].estado_id - 1].sigla + '</a> (<span id="candidato_' + candidatos[j].id + '"></span>)</h4>');
+            //$("#body_" + estados[i].id + cargo_id).append('<h3><a href="/candidato/' + candidatos[j].id + '">' + candidatos[j].nome + ' - ' + partidos[candidatos[j].partido_id - 1].sigla + '/' + estados[candidatos[j].estado_id - 1].sigla + '</a> (<span id="candidato_' + candidatos[j].id + '"></span>)</h4>');
+            $("#body_" + estados[i].id + cargo_id).append('<canvas id="chart' + cargo_id + estados[candidatos[j].estado_id - 1].id + '" width="1600" height="900"></canvas>');
+            candidatosTemp.push(candidatos[j].nome);
+            votos = getVotosPorCandidato(candidatos[j].id);
+            votosTemp.push(votos);
         }
       }
     }
+    if (candidatosTemp.length > 0) {
+      criaGrafico(candidatosTemp, votosTemp, "chart" + cargo_id + estados[i].id)
+    }    
   }
 }
 
@@ -65,7 +125,6 @@ $(document).ready(function() {
     for (i=1;i<=candidatos_global.length;i++){
       getVotosPorCandidato(i);
     }
-
 });
 
 function getVotosPorCargo(cargo_id){
@@ -111,8 +170,7 @@ function getVotosPorCargoEstado(cargo_id, estado_id){
 }
 
 function getVotosPorCandidato(candidato_id){
-  var estados = estados_global;
-  var cargos = cargos_global;
+  var votos;
 
   $.ajax({
       type: "GET",
@@ -121,30 +179,13 @@ function getVotosPorCandidato(candidato_id){
       data: {
           "candidato": candidato_id,
       },
+      async:false,
       success: function(data){
-        if (data.response == 1){
-          $("#candidato_" + candidato_id).html(data.response + " voto")
-        } else {
-          $("#candidato_" + candidato_id).html(data.response + " votos")
-        }
+        votos = data.response.toString();
       }
   });
-}
 
-function contadorVotos(candidatos, cargo, estado){
-  $.ajax({
-      type: "GET",
-      url: "/contador_votos",
-      dataType: "json",
-      data: {
-          "candidatos": candidatos,
-          "cargo": cargo,
-          "estado": estado
-      },
-      success: function(data){
-
-      }
-  });
+  return votos;
 }
 
 function alternaTab(objeto) {

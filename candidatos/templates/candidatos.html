@@ -41,7 +41,8 @@
 			    </div>
 				</div>
 				<div class="col-lg-6 col-sm-12 mx-auto">
-					<button type="button" class="btn btn-primary form-control" onclick='getCandidatosComFiltro($("#nome_filter"), $("#partido_filter"), $("#cargo_filter"), $("#estado_filter"))'>Filtrar</button>
+					<button type="button" class="btn btn-primary form-control" onclick='getCandidatosComFiltro($("#nome_filter").val(), $("#partido_filter").val(), $("#cargo_filter").val(), $("#estado_filter").val())'>Filtrar</button>
+					<h3 id="aviso-busca" style="color: red" class="red-text text-center"></h3>
 				</div>
 			</div>
 		</div>
@@ -62,7 +63,7 @@
 								<th scope="col">Perfil</th>
 					    </tr>
 					  </thead>
-					  <tbody>
+						<tbody id="tabela-candidatos">
 							{% for candidato in candidatos %}
 						    <tr>
 						      <th scope="row">{{candidato.id}}</th>
@@ -82,14 +83,15 @@
 				            <a href="?pagina={{ candidatos.previous_page_number }}">Anterior</a>
 				        {% endif %}
 
-				        <span class="current">
-				            Page {{ candidatos.number }} of {{ candidatos.paginator.num_pages }}.
-				        </span>
-
 				        {% if candidatos.has_next %}
 				            <a href="?pagina={{ candidatos.next_page_number }}">Próxima</a>
 				            <a href="?pagina={{ candidatos.paginator.num_pages }}">Última &raquo;</a>
-				        {% endif %}
+								{% endif %}
+								
+								<br>
+								<span class="current">
+									Page {{ candidatos.number }} of {{ candidatos.paginator.num_pages }}.
+								</span>
 				    </span>
 					</div>
 				</div>

@@ -12,7 +12,7 @@ def carregaVoto(request):
     #pdb.set_trace()
     cargos = Cargo.objects.all()
     candidatos = Candidato.objects.all()
-    usuario_ativo = Usuario.objects.get(id=current_user.id)
+    usuario_ativo = Usuario.objects.get(email=current_user.username)
     return render(request, 'registrar_voto2.html', { 'cargos' : cargos , 'candidatos' : candidatos, 'usuario_ativo' : usuario_ativo })
 
 
