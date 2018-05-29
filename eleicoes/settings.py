@@ -84,12 +84,11 @@ WSGI_APPLICATION = 'eleicoes.wsgi.application'
 #PRODUÇÃO
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql', 
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': 'eleicoes$eleicoes',
         'USER': 'eleicoes',
-        'PASSWORD': 'Tecnologia*123',
-        'HOST': 'mysql07.redehost.com.br', 
-        'PORT': '41890'
+        'PASSWORD': 'Tecnologia*12',
+        'HOST': 'mysql07.redehost.com.br',
     }
 }
 
