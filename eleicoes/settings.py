@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'eleicoes.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'eleicoes',
+        'NAME': 'eleicoes$eleicoes',
         'USER': 'eleicoes',
         'PASSWORD': 'Tecnologia*123',
         'HOST': 'mysql07.redehost.com.br', 
