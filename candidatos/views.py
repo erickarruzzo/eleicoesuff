@@ -70,7 +70,7 @@ def get_candidatos_com_filtro(request):
     connection = pymysql.connect(host='erickarruzzo.mysql.pythonanywhere-services.com',
                             user='erickarruzzo',
                             password='Tecnologia*123',
-                            db='eleicoes',
+                            db='erickarruzzo$eleicoes',
                             charset='utf8mb4',
                             cursorclass=pymysql.cursors.DictCursor)
 
