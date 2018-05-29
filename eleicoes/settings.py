@@ -85,10 +85,10 @@ WSGI_APPLICATION = 'eleicoes.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'eleicoes$eleicoes',
-        'USER': 'eleicoes',
-        'PASSWORD': 'Tecnologia*12',
-        'HOST': 'mysql07.redehost.com.br',
+        'NAME': 'erickarruzzo$eleicoes',
+        'USER': 'erickarruzzo',
+        'PASSWORD': 'Tecnologia*123',
+        'HOST': 'erickarruzzo.mysql.pythonanywhere-services.com',
     }
 }
 

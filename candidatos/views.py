@@ -67,9 +67,9 @@ def get_candidatos_com_filtro(request):
     #pdb.set_trace()
 
     # Conectando-se ao banco de dados
-    connection = pymysql.connect(host='mysql07.redehost.com.br',
-                            user='eleicoes',
-                            password='Tecnologia*12',
+    connection = pymysql.connect(host='erickarruzzo.mysql.pythonanywhere-services.com',
+                            user='erickarruzzo',
+                            password='Tecnologia*123',
                             db='eleicoes',
                             charset='utf8mb4',
                             cursorclass=pymysql.cursors.DictCursor)
