@@ -26,6 +26,7 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = (
     'mateusrangel.pythonanywhere.com',
+    'erickarruzzo.pythonanywhere.com',
     'localhost')
 
 
