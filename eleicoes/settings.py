@@ -69,14 +69,27 @@ WSGI_APPLICATION = 'eleicoes.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
+#DESENVOLVIMENTO
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.mysql', 
+#        'NAME': 'eleicoes',
+#        'USER': 'erick',
+#        'PASSWORD': '123',
+#        'HOST': 'localhost', 
+#        'PORT': '3306'
+#    }
+#}
+
+#PRODUÇÃO
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', 
         'NAME': 'eleicoes',
-        'USER': 'erick',
-        'PASSWORD': '123',
-        'HOST': 'localhost', 
-        'PORT': '3306'
+        'USER': 'eleicoes',
+        'PASSWORD': 'Tecnologia*123',
+        'HOST': 'mysql07.redehost.com.br', 
+        'PORT': '41890'
     }
 }
 
