@@ -44,8 +44,8 @@ class Usuario(models.Model):
 
 class Cargo(models.Model):
     nome = models.CharField(max_length=255, null=False)
-    salario = models.FloatField(null=False)
-    descricao = models.CharField(max_length=255, null=False)
+    salario = models.IntegerField(null=False)
+    descricao = models.CharField(max_length=800, null=False)
 
 
 class Partido(models.Model):
@@ -84,3 +84,4 @@ class Beneficio(models.Model):
 class CargoBeneficio(models.Model):
     cargo = models.ForeignKey(Cargo, on_delete=models.CASCADE)
     beneficio = models.ForeignKey(Beneficio, on_delete=models.CASCADE)
+    valor = models.IntegerField(null=False)

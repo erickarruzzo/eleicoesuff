@@ -30,6 +30,9 @@
               <a class="nav-link js-scroll-trigger" href="#candidatos">Candidatos</a>
             </li>
             <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#cargos">Cargos</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#votar">Votar</a>
             </li>
             <li class="nav-item">
@@ -111,7 +114,26 @@
       </div>
     </section>
 
-    <section id="votar">
+    <section id="cargos">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-sm-12 mx-auto">
+            <h2>Cargos</h2>
+            <br>
+            <p>Tudo sobre os cargos presentes nessa eleição:</p>
+            {% for cargo in cargos %}
+              <div class="row">
+                <div class="col-lg-12 mx-auto">
+                  <a href="{% url 'cargo' cargo.id %}">{{ cargo.nome }}</a>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="votar" class="bg-light">
       <div class="container">
         <div class="row">
           <div class="col-lg-12 col-sm-12 mx-auto">
@@ -131,7 +153,7 @@
       </div>
     </section>
 
-    <section id="boca_de_urna" class="bg-light">
+    <section id="boca_de_urna">
       <div class="container">
         <div class="row">
           <div class="col-lg-12 col-sm-12 mx-auto">
@@ -145,7 +167,7 @@
       </div>
     </section>
 
-    <section id="noticias">
+    <section id="noticias" class="bg-light">
       <div class="container">
         <div class="row">
           <div class="col-lg-12 col-sm-12 mx-auto">
