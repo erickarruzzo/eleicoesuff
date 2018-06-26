@@ -19,6 +19,8 @@ class Usuario(models.Model):
 
 class Cargo(models.Model):
     nome = models.CharField(max_length=255, null=False)
+    salario = models.FloatField(null=False)
+    descricao = models.CharField(max_length=255, null=False)
 
 
 class Partido(models.Model):
@@ -31,6 +33,7 @@ class Candidato(models.Model):
     cargo = models.ForeignKey(Cargo, on_delete=models.CASCADE)
     partido = models.ForeignKey(Partido, on_delete=models.CASCADE)
     estado = models.ForeignKey(Estado, on_delete=models.CASCADE)
+    votos_recebidos = models.IntegerField(default=0)
 
 
 class Voto(models.Model):
@@ -52,6 +55,10 @@ class Noticia(models.Model):
 #	titulo = models.CharField(max_length=255, null=False)
 #	link = models.CharField(max_length=255, null=False)
 
-# class InfoCargo(models.Model):
-#	texto = models.CharField(max_length=500, null=False)
-#	salario = models.FloatField(null=False)
+class Beneficio(models.Model):
+	nome = models.CharField(max_length=255, null=False)
+	descricao = models.CharField(max_length=255, null=False)
+
+class CargoBeneficio(models.Model):
+    cargo = models.ForeignKey(Cargo, on_delete=models.CASCADE)
+    beneficio = models.ForeignKey(Beneficio, on_delete=models.CASCADE)

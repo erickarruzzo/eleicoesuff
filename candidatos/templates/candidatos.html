@@ -41,7 +41,7 @@
 			    </div>
 				</div>
 				<div class="col-lg-6 col-sm-12 mx-auto">
-					<button type="button" class="btn btn-primary form-control" onclick='getCandidatosComFiltro($("#nome_filter").val(), $("#partido_filter").val(), $("#cargo_filter").val(), $("#estado_filter").val())'>Filtrar</button>
+					<a href="{% url 'candidatos'  %}" type="button" class="btn btn-primary form-control" onclick='getCandidatosComFiltro($("#nome_filter").val(), $("#partido_filter").val(), $("#cargo_filter").val(), $("#estado_filter").val())'>Filtrar</a>
 					<h3 id="aviso-busca" style="color: red" class="red-text text-center"></h3>
 				</div>
 			</div>
@@ -67,10 +67,10 @@
 							{% for candidato in candidatos %}
 						    <tr>
 						      <th scope="row">{{candidato.id}}</th>
-						      <td>{{candidato.nome}}</td>
-						      <td>{{candidato.partido.sigla}}</td>
-						      <td>{{candidato.estado.sigla}}</td>
-									<td>{{candidato.cargo.nome}}</td>
+						      <td>{{candidato.candidato}}</td>
+						      <td>{{candidato.partido}}</td>
+						      <td>{{candidato.estado}}</td>
+									<td>{{candidato.cargo}}</td>
 									<td><a class="btn btn-primary" href="{% url 'candidato' candidato.id %}"><i class="fas fa-user-tie"></i></a></td>
 						    </tr>
 							{% endfor %}
