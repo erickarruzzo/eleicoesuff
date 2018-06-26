@@ -2,10 +2,34 @@ from django.db import models
 from django.contrib.auth.models import User
 #import datetime
 
+import math
 
 class Estado(models.Model):
     nome = models.CharField(max_length=255, null=False)
     sigla = models.CharField(max_length=2, null=False)
+    total_eleitores = models.IntegerField(null=False, default=5000000)
+
+    def getNumDepFederal(self):
+        n = math.ceil(self.total_eleitores/370000)
+        if n < 8:
+            return 8
+        elif n > 70:
+            return 70
+        return n  
+
+    def getNumDepEstadual(self):
+        n = self.getNumDepFederal()
+        if n >= 12:
+            return n+24            
+        return n*3
+
+
+class LocalVotacao(models.Model):
+    zona = models.IntegerField(null=False)
+    secao = models.IntegerField(null=False)
+    local = models.CharField(max_length=255, null=False)
+    endereco = models.CharField(max_length=255, null=False)
+    estado = models.ForeignKey(Estado, on_delete=models.CASCADE)
 
 
 class Usuario(models.Model):
@@ -15,6 +39,7 @@ class Usuario(models.Model):
     email = models.CharField(max_length=255, null=False)
     senha = models.CharField(max_length=255, null=False)
     estado = models.ForeignKey(Estado, on_delete=models.CASCADE)
+    local_votacao = models.ForeignKey(LocalVotacao, on_delete=models.CASCADE, null=True)
 
 
 class Cargo(models.Model):
@@ -33,7 +58,7 @@ class Candidato(models.Model):
     cargo = models.ForeignKey(Cargo, on_delete=models.CASCADE)
     partido = models.ForeignKey(Partido, on_delete=models.CASCADE)
     estado = models.ForeignKey(Estado, on_delete=models.CASCADE)
-    votos_recebidos = models.IntegerField(default=0)
+    total_votos = models.IntegerField(null=False, default=0)
 
 
 class Voto(models.Model):
@@ -50,10 +75,7 @@ class Noticia(models.Model):
     titulo = models.CharField(max_length=255, null=False)
     link = models.CharField(max_length=255, null=False)
     data = models.DateTimeField()
-
-# class LocalVotacao(models.Model):
-#	titulo = models.CharField(max_length=255, null=False)
-#	link = models.CharField(max_length=255, null=False)
+    candidato = models.ForeignKey(Candidato, on_delete=models.CASCADE, null=True)
 
 class Beneficio(models.Model):
 	nome = models.CharField(max_length=255, null=False)
