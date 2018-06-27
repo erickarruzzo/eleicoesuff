@@ -25,7 +25,7 @@ class RegistrarLocalView(View):
             estado = Estado.objects.get(id=dados_form['estado_register'])
 
             #cria o Local
-            local = LocalVotacao(zona=dados_form['zona_register'], secao=dados_form['secao_register'], endereco=dados_form['endereco_register'], estado=estado)
+            local = LocalVotacao(zona=dados_form['zona_register'], secao=dados_form['secao_register'], endereco=dados_form['endereco_register'], estado=estado, mapa=dados_form['mapa_register'])
 
             #grava no banco
             local.save()

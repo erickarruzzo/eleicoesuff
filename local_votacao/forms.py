@@ -8,6 +8,7 @@ class RegistrarLocalForm(forms.Form):
     secao_register = forms.IntegerField(required=True)
     endereco_register = forms.CharField(required=True)
     estado_register = forms.CharField(required=True)
+    mapa_register = forms.CharField(required=True)
 
     def is_valid(self):
             valid = True
