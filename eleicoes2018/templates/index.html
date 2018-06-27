@@ -39,6 +39,9 @@
               <a class="nav-link js-scroll-trigger" href="#boca_de_urna">Boca de Urna</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="#local">Local de Votação</a>
+              </li>
+            <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#noticias">Notícias</a>
             </li>
 
@@ -168,7 +171,21 @@
       </div>
     </section>
 
-    <section id="noticias" class="bg-light">
+    <section id="local" class="bg-light">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12 col-sm-12 mx-auto">
+              <h2>Local de Votação</h2>
+              <br>
+              <p>Saiba onde você irá votar!</p>
+              <br>
+              <a class="btn btn-primary" href="{% url 'local' %}">Local de votação</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    <section id="noticias">
       <div class="container">
         <div class="row">
           <div class="col-lg-12 col-sm-12 mx-auto">
