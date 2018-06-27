@@ -1,4 +1,6 @@
 """
+# -*- coding: utf-8 -*-
+
 Django settings for eleicoes project.
 
 For more information on this file, see
