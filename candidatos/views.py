@@ -57,12 +57,19 @@ def candidatos(request):
     estado_id = request.POST.get("estado", None)
     partido_id = request.POST.get("partido", None)
 
-    connection = pymysql.connect(host='localhost',
-                            user='erick',
-                            password='123',
-                            db='eleicoes',
+    connection = pymysql.connect(host='erickarruzzo.mysql.pythonanywhere-services.com',
+                            user='erickarruzzo',
+                            password='Tecnologia*123',
+                            db='erickarruzzo$eleicoes',
                             charset='utf8mb4',
                             cursorclass=pymysql.cursors.DictCursor)
+
+    #connection = pymysql.connect(host='localhost',
+    #                        user='erick',
+    #                        password='123',
+    #                        db='eleicoes',
+    #                        charset='utf8mb4',
+    #                        cursorclass=pymysql.cursors.DictCursor)
 
     try:
         with connection.cursor() as cursor:

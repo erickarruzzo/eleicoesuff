@@ -73,28 +73,28 @@ WSGI_APPLICATION = 'eleicoes.wsgi.application'
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
 #DESENVOLVIMENTO
-DATABASES = {
-
-    'default': {
-        'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'eleicoes',
-        'USER': 'erick',
-        'PASSWORD': '123',
-        'HOST': 'localhost', 
-        'PORT': '3306'
-    }
-}
-
-#PRODUÇÃO
 #DATABASES = {
+#
 #    'default': {
-#        'ENGINE': 'django.db.backends.mysql',
-#        'NAME': 'erickarruzzo$eleicoes',
-#        'USER': 'erickarruzzo',
-#        'PASSWORD': 'Tecnologia*123',
-#        'HOST': 'erickarruzzo.mysql.pythonanywhere-services.com',
+#        'ENGINE': 'django.db.backends.mysql', 
+#        'NAME': 'eleicoes',
+#        'USER': 'erick',
+#        'PASSWORD': '123',
+#        'HOST': 'localhost', 
+#        'PORT': '3306'
 #    }
 #}
+
+#PRODUÇÃO
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'erickarruzzo$eleicoes',
+        'USER': 'erickarruzzo',
+        'PASSWORD': 'Tecnologia*123',
+        'HOST': 'erickarruzzo.mysql.pythonanywhere-services.com',
+    }
+}
 
 #
 #   'default': {
@@ -107,16 +107,6 @@ DATABASES = {
 #   }
 #}
 
-#PRODUÇÃO
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'erickarruzzo$eleicoes',
-#         'USER': 'erickarruzzo',
-#         'PASSWORD': 'Tecnologia*123',
-#         'HOST': 'erickarruzzo.mysql.pythonanywhere-services.com',
-#     }
-# }
 
 #DATABASES = {
 #    'default': {
