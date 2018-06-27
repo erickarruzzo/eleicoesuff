@@ -49,7 +49,9 @@ INSTALLED_APPS = (
     'boca_de_urna',
     'info_candidatos',
     'info_cargos',
-    'noticias'
+    'noticias',
+    'resultado',
+    'local_votacao'
 )
 
 MIDDLEWARE = [

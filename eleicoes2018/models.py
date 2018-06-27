@@ -1,7 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-#import datetime
-
 import math
 
 class Estado(models.Model):
@@ -27,9 +25,9 @@ class Estado(models.Model):
 class LocalVotacao(models.Model):
     zona = models.IntegerField(null=False)
     secao = models.IntegerField(null=False)
-    local = models.CharField(max_length=255, null=False)
     endereco = models.CharField(max_length=255, null=False)
     estado = models.ForeignKey(Estado, on_delete=models.CASCADE)
+    mapa = models.CharField(max_length=500, null=False)
 
 
 class Usuario(models.Model):
@@ -39,7 +37,6 @@ class Usuario(models.Model):
     email = models.CharField(max_length=255, null=False)
     senha = models.CharField(max_length=255, null=False)
     estado = models.ForeignKey(Estado, on_delete=models.CASCADE)
-    local_votacao = models.ForeignKey(LocalVotacao, on_delete=models.CASCADE, null=True)
 
 
 class Cargo(models.Model):

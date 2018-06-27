@@ -1,0 +1,60 @@
+{% extends "local_consulta_template.html" %}
+
+{% block body %}
+<section>
+  <form class="col-lg-8 mx-auto">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-sm-12 mx-auto">
+                <div class="form-group">
+                <input type="text" class="form-control" name="titulo_filter" id="titulo_filter" placeholder="Título de Eleitor" required>
+            </div>
+            </div>
+            <div class="col-lg-6 col-sm-12 mx-auto">
+                <div class="form-group">
+                    <select class="custom-select" name="estado_filter" id="estado_filter" required>
+                    <option value="" hidden>Estado</option>
+                    {% for estado in estados %}
+                            <option value="{{ estado.id }}">{{ estado.sigla }}</option>
+                    {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-sm-12 mx-auto">
+                <a class="btn btn-primary form-control" onclick="consultaLocal($('#titulo_filter').val(), $('#estado_filter').val())">Consultar</a>
+                <span style="color: red; display: none" id="erro_consulta">Nenhum resultado encontrado!</span>
+            </div>
+        </div>
+    </div>
+  </form>
+</section>
+
+<section class="bg-light" id="section_resultado" style="display: none">
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Zona</th>
+                    <th scope="col">Seção</th>
+                    <th scope="col">Endereço</th>
+                    <th scope="col">Estado</th>
+                </tr>
+            </thead>
+            <tbody id="tabela_local">
+                <!--tr>
+                    <th scope="row">{{local.id}}</th>
+                    <td>{{local.zona}}</td>
+                    <td>{{local.secao}}</td>
+                    <td>{{local.endereco}}</td>
+                    <td>{{local.estado}}</td>
+                </tr-->
+            </tbody>
+        </table>
+        <div class="map-responsive" id="mapa">
+            <!--iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3674.9310554215945!2d-43.225011549592814!3d-22.915913684933606!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x997e50a3fd1017%3A0x89e915e6236b5a76!2sRua+Professor+Gabizo%2C+281+-+Maracan%C3%A3%2C+Rio+de+Janeiro+-+RJ%2C+20270-002!5e0!3m2!1spt-BR!2sbr!4v1530072995073" width="2000" height="450" frameborder="0" style="border:0" allowfullscreen></iframe-->
+        </div>
+    </div>
+</section>
+{% endblock %}

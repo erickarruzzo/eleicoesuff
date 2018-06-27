@@ -83,7 +83,7 @@ class AlterarUsuarioView(View):
         return render(request, self.template_name, { 'usuario' : usuario , 'estados' : estados })
 
 def usuario(request, usuario_id):
-	usuario = Usuario.objects.get(id=usuario_id)
+	usuario = Usuario.objects.get(user=usuario_id)
 	return render(request, 'usuario.html', { "usuario" : usuario })
 
 def login(request):

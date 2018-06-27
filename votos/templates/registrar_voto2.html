@@ -19,7 +19,7 @@
                           <div class="card-body">
                             <h5 class="card-title text-center">{{ candidato.partido.sigla }}</h5>
                             <p class="card-text text-center">{{ candidato.estado.nome }}</p>
-                            <a style="color: white" onclick="votarCandidato({{candidato.id}}, {{usuario_ativo.id}}); $('#{{cargo.id}}-list').hide()" class="btn btn-primary form-control">Selecionar</a>
+                            <a style="color: white" onclick='votarCandidato({{candidato.id}}, {{usuario_ativo.id}}); $("#{{cargo.id}}-list").hide()' class="btn btn-primary form-control">Selecionar</a>
                           </div>
                         </div>
                     </div>
