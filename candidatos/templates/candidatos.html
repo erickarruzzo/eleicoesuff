@@ -2,52 +2,6 @@
 
 {% block body %}
 <form>
-	<section>
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-6 col-sm-12 mx-auto">
-					<div class="form-group">
-			      <input type="text" class="form-control" name="nome_filter" id="nome_filter" placeholder="Nome" required>
-			    </div>
-				</div>
-				<div class="col-lg-6 col-sm-12 mx-auto">
-			    <div class="form-group">
-			      <select class="custom-select" name="partido_filter" id="partido_filter" required>
-			        <option value="" hidden>Partido</option>
-			        {% for partido in partidos %}
-	               <option value="{{ partido.id }}">{{ partido.sigla }}</option>
-			        {% endfor %}
-			      </select>
-			    </div>
-				</div>
-				<div class="col-lg-6 col-sm-12 mx-auto">
-			    <div class="form-group">
-			      <select class="custom-select" name="estado_filter" id="estado_filter" required>
-			        <option value="" hidden>Estado</option>
-			        {% for estado in estados %}
-			               <option value="{{ estado.id }}">{{ estado.sigla }}</option>
-			        {% endfor %}
-			      </select>
-			    </div>
-				</div>
-				<div class="col-lg-6 col-sm-12 mx-auto">
-			    <div class="form-group">
-			      <select class="custom-select" name="cargo_filter" id="cargo_filter" required>
-			        <option value="" hidden>Cargo</option>
-			        {% for cargo in cargos %}
-			               <option value="{{ cargo.id }}">{{ cargo.nome }}</option>
-			        {% endfor %}
-			      </select>
-			    </div>
-				</div>
-				<div class="col-lg-6 col-sm-12 mx-auto">
-					<a href="{% url 'candidatos'  %}" type="button" class="btn btn-primary form-control" onclick='getCandidatosComFiltro($("#nome_filter").val(), $("#partido_filter").val(), $("#cargo_filter").val(), $("#estado_filter").val())'>Filtrar</a>
-					<h3 id="aviso-busca" style="color: red" class="red-text text-center"></h3>
-				</div>
-			</div>
-		</div>
-	</section>
-
 	<section class="bg-light">
 		<div class="container">
 			<div class="row">
@@ -67,10 +21,10 @@
 							{% for candidato in candidatos %}
 						    <tr>
 						      <th scope="row">{{candidato.id}}</th>
-						      <td>{{candidato.candidato}}</td>
-						      <td>{{candidato.partido}}</td>
-						      <td>{{candidato.estado}}</td>
-									<td>{{candidato.cargo}}</td>
+						      <td>{{candidato.nome}}</td>
+						      <td>{{candidato.partido.sigla}}</td>
+						      <td>{{candidato.estado.sigla}}</td>
+									<td>{{candidato.cargo.nome}}</td>
 									<td><a class="btn btn-primary" href="{% url 'candidato' candidato.id %}"><i class="fas fa-user-tie"></i></a></td>
 						    </tr>
 							{% endfor %}

@@ -22,7 +22,6 @@ class RegistrarCandidatoView(View):
         return render(request, self.template_name, { 'estados' : estados , 'partidos' : partidos , 'cargos' : cargos })
 
     def post(self, request, *args, **kwargs):
-
         #preenche o form
         form = RegistrarCandidatoForm(request.POST)
         #verifica se eh valido
@@ -52,63 +51,12 @@ def candidato(request, candidato_id):
 
 @csrf_exempt
 def candidatos(request):
-    nome = request.POST.get("nome", None)
-    cargo_id = request.POST.get("cargo", None)
-    estado_id = request.POST.get("estado", None)
-    partido_id = request.POST.get("partido", None)
-
-    connection = pymysql.connect(host='erickarruzzo.mysql.pythonanywhere-services.com',
-                            user='erickarruzzo',
-                            password='Tecnologia*123',
-                            db='erickarruzzo$eleicoes',
-                            charset='utf8mb4',
-                            cursorclass=pymysql.cursors.DictCursor)
-
-    #connection = pymysql.connect(host='localhost',
-    #                        user='erick',
-    #                        password='123',
-    #                        db='eleicoes',
-    #                        charset='utf8mb4',
-    #                        cursorclass=pymysql.cursors.DictCursor)
-
-    try:
-        with connection.cursor() as cursor:
-            # Read a single record
-            sql = "SELECT candidato.id, candidato.nome candidato, partido.sigla partido, estado.sigla estado, cargo.nome cargo FROM `eleicoes2018_candidato` candidato left join `eleicoes2018_partido` partido on candidato.partido_id = partido.id left join `eleicoes2018_estado` estado on candidato.estado_id = estado.id left join `eleicoes2018_cargo` cargo on candidato.cargo_id = cargo.id WHERE 1=1 "
-
-            if nome: 
-                sql += "and candidato.nome like '%" + nome + "%' "
-            
-            if cargo_id:
-                sql += "and candidato.cargo_id =" + cargo_id + " "
-
-            if estado_id:
-                sql += "and candidato.estado_id =" + estado_id + " "
-
-            if partido_id:
-                sql += "and candidato.partido_id =" + partido_id + " "
-
-            cursor.execute(sql)
-            result = cursor.fetchall()
-
-            #pdb.set_trace()
-
-            #return JsonResponse(result, safe=False)
-    finally:
-        connection.close()
-
-    #ids_candidatos = request.GET.get("candidatos", None)
-
-    #pdb.set_trace()
-
+    result = Candidato.objects.all()
     paginator = Paginator(result, 10) # Mostra 10 candidatos por página
     page = request.GET.get('pagina')
     cargos = Cargo.objects.all().order_by('nome')
     candidatos = paginator.get_page(page)
     partidos = Partido.objects.all().order_by('nome')
     estados = Estado.objects.all().order_by('nome')
-    if request.is_ajax():
-        html = render_to_string('candidatos.html', { "candidatos" : candidatos, "cargos" : cargos, "estados" : estados, "partidos" : partidos })
-        return HttpResponse(html)
 
-    return render(request, 'candidatos.html', { "candidatos" : candidatos, "cargos" : cargos, "estados" : estados, "partidos" : partidos })
+    return render(request, 'candidatos.html', { "candidatos" : candidatos })
