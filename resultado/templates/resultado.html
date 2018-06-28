@@ -1,0 +1,44 @@
+{% extends "resultado_template.html" %}
+
+{% block body %}
+<section>
+  <form class="col-lg-8 mx-auto">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-sm-12 mx-auto">
+                <div class="form-group">
+                    <select class="custom-select" name="cargo_filter" id="cargo_filter" onchange="carregaEstado($(this).val())" required>
+                    <option value="" hidden>Cargo</option>
+                    {% for cargo in cargos %}
+                            <option value="{{ cargo.id }}">{{ cargo.nome }}</option>
+                    {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div id="divEstado" class="col-lg-6 col-sm-12 mx-auto" style="display: none">
+                <div class="form-group">
+                    <select class="custom-select" name="estado_filter" id="estado_filter" required>
+                    <option value="" hidden>Estado</option>
+                    {% for estado in estados %}
+                            <option value="{{ estado.id }}">{{ estado.sigla }}</option>
+                    {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-sm-12 mx-auto">
+                <a class="btn btn-primary form-control" style="color: white" onclick="consultar($('#cargo_filter').val(), $('#estado_filter').val())">Consultar</a>
+                <span style="color: red; display: none" id="erro_consulta"></span>
+            </div>
+        </div>
+    </div>
+  </form>
+</section>
+
+<section id="sectionChart" class="bg-light" id="section_resultado" style="display: none">
+    <div class="container" id="graph-container">
+        <canvas id="chart" width="1600" height="900"></canvas>
+    </div>
+</section>
+{% endblock %}

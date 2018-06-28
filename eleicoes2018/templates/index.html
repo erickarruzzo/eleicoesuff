@@ -40,7 +40,10 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link js-scroll-trigger" href="#local">Local de Votação</a>
-              </li>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="#resultado">Resultado</a>
+            </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#noticias">Notícias</a>
             </li>
@@ -172,20 +175,34 @@
     </section>
 
     <section id="local" class="bg-light">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-12 col-sm-12 mx-auto">
-              <h2>Local de Votação</h2>
-              <br>
-              <p>Saiba onde você irá votar!</p>
-              <br>
-              <a class="btn btn-primary" href="{% url 'local' %}">Local de votação</a>
-            </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-sm-12 mx-auto">
+            <h2>Local de Votação</h2>
+            <br>
+            <p>Saiba onde você irá votar!</p>
+            <br>
+            <a class="btn btn-primary" href="{% url 'local' %}">Local de votação</a>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-    <section id="noticias">
+    <section id="resultado">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-sm-12 mx-auto">
+            <h2>Resultados das Eleições de 2018</h2>
+            <br>
+            <p>Saiba os vencedores de cada cargo em cada estado!</p>
+            <br>
+            <a class="btn btn-primary" href="{% url 'resultado' %}">Resultados</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="noticias" class="bg-light">
       <div class="container">
         <div class="row">
           <div class="col-lg-12 col-sm-12 mx-auto">

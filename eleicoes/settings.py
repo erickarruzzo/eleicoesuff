@@ -76,7 +76,6 @@ WSGI_APPLICATION = 'eleicoes.wsgi.application'
 
 #DESENVOLVIMENTO
 #DATABASES = {
-#
 #    'default': {
 #        'ENGINE': 'django.db.backends.mysql', 
 #        'NAME': 'eleicoes',
